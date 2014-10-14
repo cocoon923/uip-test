@@ -24,7 +24,7 @@ public abstract class BaseDAO {
 		return namedParameterJdbcTemplate;
 	}
 
-	public <T> void insert(T t) {
+	public <T> void save(T t) {
 		this.getNamedParameterJdbcTemplatel().update(getInsertSQL(t.getClass()), new BeanPropertySqlParameterSource(t));
 	}
 

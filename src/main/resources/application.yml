@@ -11,6 +11,10 @@ doc:
     inter:
         code: 100000000001
         basicParamPath: inter/param.json
+
+mail:
+    fromEmail: chenmm6@asiainfo.com
+    fromPassword: arenagod@123
         
 spring:
     datasource:

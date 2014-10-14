@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface CRUD {
 
-	public <T> void insert(T t);
+	public <T> void save(T t);
 
 	public <T> void batchInsert(Class<T> clz, List<T> list);
 
