@@ -1,5 +1,6 @@
 package com.ailife.uip.test.file;
 
+import com.ailife.uip.test.config.DocProperties;
 import com.ailife.uip.test.file.entity.AiCrmTree;
 import com.ailife.uip.test.file.entity.Inter;
 import com.ailife.uip.test.file.entity.Param;
@@ -11,7 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -32,8 +33,8 @@ public class JsoupUtil {
 		return interList;
 	}
 
-	@Value("${doc.inter.code}")
-	private String interCode;
+	@Autowired
+	private DocProperties docProperties;
 
 	public void parseHtml(String html) {
 		String[] h1Fragments = getFragments(html, HTMLLEVEL.h1);
@@ -50,7 +51,7 @@ public class JsoupUtil {
 				Element titleElement = getElement(interDocument, HTMLLEVEL.h3);
 				inter.setName(titleElement.text().trim());
 				inter.setImplClass(entry.getValue());
-				inter.setInterfaceCode(interCode);
+				inter.setInterfaceCode(docProperties.getCode());
 				String seq = getInterSeq(i, j);
 				inter.setServiceSeq(Long.parseLong(seq));
 				Elements descElementTrs = getNextElement(titleElement, HTMLLEVEL.table).child(0).children();

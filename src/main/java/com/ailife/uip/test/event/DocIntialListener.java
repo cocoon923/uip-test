@@ -3,8 +3,7 @@ package com.ailife.uip.test.event;
 import com.ailife.uip.test.file.JsoupUtil;
 import com.ailife.uip.test.file.TikaUtil;
 import com.ailife.uip.test.file.entity.Inter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.ailife.uip.test.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 
@@ -18,8 +17,6 @@ import java.util.List;
 @Resource
 public class DocIntialListener implements ApplicationListener<DocInitialEvent<File>> {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private JsoupUtil jsoupUtil;
 
@@ -31,10 +28,10 @@ public class DocIntialListener implements ApplicationListener<DocInitialEvent<Fi
 				jsoupUtil.parseHtml(TikaUtil.parse(file));
 				List<Inter> inters = jsoupUtil.getInterList();
 			} else {
-				logger.error("file is not exists!");
+				LogUtil.error(this.getClass(), "file is not exists!");
 			}
 		} catch (Exception e) {
-			logger.error("Something Wrong!", e);
+			LogUtil.error(this.getClass(), "Something Wrong!", e);
 		}
 	}
 }

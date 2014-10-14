@@ -13,7 +13,7 @@ import java.util.List;
  * Created by chenmm on 10/11/2014.
  */
 @Repository
-public class ParamDAOImpl extends BaseDAO<Param> implements IParamDAO {
+public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 
 	private static final String SELECT_ALL = "SELECT * FROM UIP_PARAM";
 	private static final String SELECT_BY_BATCH_SEQS = "SELECT * FROM UIP_PARAM WHERE SEQ IN (:seqs)";

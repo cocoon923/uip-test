@@ -2,10 +2,12 @@ package com.ailife.uip.test.db.dao;
 
 import com.google.common.base.CaseFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.List;
@@ -16,17 +18,17 @@ import java.util.List;
 public abstract class BaseDAO {
 
 	@Autowired
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplatel;
+	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplatel() {
-		return namedParameterJdbcTemplatel;
+		return namedParameterJdbcTemplate;
 	}
 
 	public <T> void insert(T t) {
 		this.getNamedParameterJdbcTemplatel().update(getInsertSQL(t.getClass()), new BeanPropertySqlParameterSource(t));
 	}
 
-	public <T> void batchInser(Class<T> clz, List<T> list) {
+	public <T> void batchInsert(Class<T> clz, List<T> list) {
 		if (list == null || list.size() <= 0) {
 			return;
 		}

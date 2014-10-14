@@ -6,6 +6,7 @@ server:
 multipart:
     maxFileSize: 5Mb
     maxRequestSize: 10Mb
+
 doc:
     inter:
         code: 100000000001

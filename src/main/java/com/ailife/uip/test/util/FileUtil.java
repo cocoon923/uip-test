@@ -1,18 +1,16 @@
-package com.ailife.uip.test.file;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.ailife.uip.test.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * Created by chenmm on 9/25/2014.
  */
 public class FileUtil {
 
-	private final static Logger logger = LoggerFactory.getLogger(FileUtil.class);
 
 	public static void saveFile(String name, String content) {
 		try {
@@ -25,8 +23,16 @@ public class FileUtil {
 			fileOutputStream.flush();
 			fileOutputStream.close();
 		} catch (IOException e) {
-			logger.error("Save file Error!", e);
+			LogUtil.error(FileUtil.class, "Save file Error!", e);
 		}
+	}
+
+	public static InputStream loadFile(String file) {
+		LogUtil.debug(FileUtil.class, "Load File <" + file + ">");
+
+		ClassLoader classLoader = FileUtil.class.getClassLoader();
+		URL u = classLoader.getResource(file);
+		return classLoader.getResourceAsStream(file);
 	}
 
 }

@@ -119,10 +119,23 @@ public class Param implements Serializable, Cloneable {
 		return fullParamValue;
 	}
 
-
 	@Override
 	protected Param clone() throws CloneNotSupportedException {
 		return (Param) super.clone();
+	}
+
+	@Override
+	public String toString() {
+		return "Param{" +
+				"seq=" + seq +
+				", paramName='" + paramName + '\'' +
+				", paramCode='" + paramCode + '\'' +
+				", paramValue='" + paramValue + '\'' +
+				", isNull='" + isNull + '\'' +
+				", sort=" + sort +
+				", paramType='" + paramType + '\'' +
+				", remark='" + remark + '\'' +
+				'}';
 	}
 
 	public Param generateInterParm(String interSeq) throws Exception {

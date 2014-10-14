@@ -1,22 +1,22 @@
 package com.ailife.uip.test.config;
 
-import org.springframework.beans.factory.BeanClassLoaderAware;
+import com.ailife.uip.test.util.LogUtil;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.annotation.PostConstruct;
 
 /**
  * Created by chenmm on 9/29/2014.
  */
 @ConfigurationProperties(prefix = DocAutoConfiguration.CONFIGURATION_PREFIX)
-public class DocProperties implements BeanClassLoaderAware {
+public class DocProperties {
 
 	private String code;
 	private String basicParamPath;
 
-	private ClassLoader classLoader;
-
-	@Override
-	public void setBeanClassLoader(ClassLoader classLoader) {
-		this.classLoader = classLoader;
+	@PostConstruct
+	public void log() {
+		LogUtil.debug(this.getClass(), "Initial Doc Properties." + this.toString());
 	}
 
 	public String getCode() {
@@ -35,8 +35,11 @@ public class DocProperties implements BeanClassLoaderAware {
 		this.basicParamPath = basicParamPath;
 	}
 
-	public ClassLoader getClassLoader() {
-		return classLoader;
+	@Override
+	public String toString() {
+		return "DocProperties{" +
+				"code='" + code + '\'' +
+				", basicParamPath='" + basicParamPath + '\'' +
+				'}';
 	}
-
 }

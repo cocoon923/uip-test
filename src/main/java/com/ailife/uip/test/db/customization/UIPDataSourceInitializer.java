@@ -1,17 +1,19 @@
 package com.ailife.uip.test.db.customization;
 
+import com.ailife.uip.test.config.DocProperties;
 import com.ailife.uip.test.db.dao.IParamDAO;
 import com.ailife.uip.test.event.DataInitialEvent;
 import com.ailife.uip.test.file.entity.Param;
+import com.ailife.uip.test.util.FileUtil;
+import com.ailife.uip.test.util.LogUtil;
 import com.alibaba.fastjson.JSONReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.io.Resource;
 
 import javax.annotation.PostConstruct;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,8 @@ import java.util.List;
  */
 public class UIPDataSourceInitializer implements ApplicationListener<DataInitialEvent<List<Param>>> {
 
-	@Value("${doc.inter.basicParamPath}")
-	private String basicParamPath;
+	@Autowired
+	private DocProperties docProperties;
 
 	@Autowired
 	private ConfigurableApplicationContext applicationContext;
@@ -32,17 +34,15 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 	@PostConstruct
 	protected void initialize() throws Exception {
 		List<Param> params = new ArrayList<Param>();
-		Resource resource = this.applicationContext.getResource("classpath:" + basicParamPath);
-		if (resource.exists()) {
-			JSONReader jsonReader = new JSONReader(new FileReader(resource.getFile()));
-			jsonReader.startArray();
-			while (jsonReader.hasNext()) {
-				Param param = jsonReader.readObject(Param.class);
-				params.add(param);
-			}
-			jsonReader.endArray();
-			jsonReader.close();
+		InputStream inputStream = FileUtil.loadFile(docProperties.getBasicParamPath());
+		JSONReader jsonReader = new JSONReader(new InputStreamReader(inputStream));
+		jsonReader.startArray();
+		while (jsonReader.hasNext()) {
+			Param param = jsonReader.readObject(Param.class);
+			params.add(param);
 		}
+		jsonReader.endArray();
+		jsonReader.close();
 		if (params != null && params.size() > 0) {
 			this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
 		}
@@ -50,7 +50,11 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 
 	@Override
 	public void onApplicationEvent(DataInitialEvent<List<Param>> event) {
-		List<Param> param = event.getSource();
-		paramDAO.insert(param.get(0));
+		List<Param> paramList = event.getSource();
+		paramDAO.batchInsert(Param.class, paramList);
+		List<Param> dataList = paramDAO.selectAll();
+		for (Param param : dataList) {
+			LogUtil.debug(this.getClass(), param.toString());
+		}
 	}
 }

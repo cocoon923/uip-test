@@ -270,48 +270,4 @@ public class AiCrmTree {
 		return idRnd;
 	}
 
-	public static void main(String[] args) throws Exception {
-//		System.out.println(Arrays.toString("PubInfo.InterfaceType".split("\\.")));
-//		System.out.println("PubInfo.InterfaceType[n]".endsWith("[n]"));
-
-//		boolean a = true;
-//		boolean b = true;
-//		System.out.println(a==b);
-
-//		AiCrmTree root  = new AiCrmTree();
-//		AiCrmTree pubNode  = new AiCrmTree("PubInfo");
-//		root.addChild(pubNode);
-//		AiCrmTree transId = new AiCrmTree("TransactionId");
-//		AiCrmTree infId = new AiCrmTree("InterfaceId");
-//		AiCrmTree infType = new AiCrmTree("InterfaceType");
-//		AiCrmTree opId = new AiCrmTree("OpId");
-//		pubNode.addChild(transId);
-//		pubNode.addChild(infId);
-//		pubNode.addChild(infType);
-//		pubNode.addChild(opId);
-//		AiCrmTree request = new AiCrmTree("Request");
-//		root.addChild(request);
-//		AiCrmTree busiParam = new AiCrmTree("BusiParams");
-//		request.addChild(busiParam);
-//		AiCrmTree busiCode = new AiCrmTree("BusiCode");
-//		request.addChild(busiCode);
-//		AiCrmTree serviceNum = new AiCrmTree("ServiceNum",true);
-//		busiParam.addChild(serviceNum);
-//		System.out.println(AiCrmTree.getPathTree(root));
-//		
-//		AiCrmTree aicrm  = new AiCrmTree();
-//		String[] paths = new String[]{"PubInfo.TransactionId", "PubInfo.InterfaceId", "PubInfo.InterfaceType", "PubInfo.OpId", "Request.BusiParams.ServiceNum[n]", "Request.BusiCode"};
-//		for(int i = 0 ; i < paths.length ; i++){
-//			aicrm.addChildByPath(paths[i]);
-//		}
-//		System.out.println(aicrm);
-//		System.out.println(AiCrmTree.getPathTree(aicrm));
-//
-//		Map map = AiCrmTree.returnMap(aicrm);
-//		System.out.println(map);
-//		
-//		System.out.println(AiCrmTree.assembleJSON(map));
-
-		System.out.println(getRomId(6));
-	}
 }
