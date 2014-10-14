@@ -1,0 +1,20 @@
+# Server settings (ServerProperties)
+server:
+    port: 9000
+    servletPath: /uip
+
+multipart:
+    maxFileSize: 5Mb
+    maxRequestSize: 10Mb
+doc:
+    inter:
+        code: 100000000001
+        basicParamPath: inter/param.json
+        
+spring:
+    datasource:
+        platform: uip
+        url: jdbc:hsqldb:mem:uip
+        username: uip
+        password: uip
+        continueOnError: false
