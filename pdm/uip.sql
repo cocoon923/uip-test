@@ -14,6 +14,10 @@ drop table if exists sequence;
 
 drop table if exists uip_user;
 
+drop table if exists uip_param;
+
+drop table if exists uip_static_data;
+
 /*==============================================================*/
 /* Table: sequence                                              */
 /*==============================================================*/
@@ -38,6 +42,37 @@ create table uip_user
    validate_code        varchar(100) not null,
    register_time        datetime not null,
    primary key (user_id)
+);
+
+/*==============================================================*/
+/* Table: uip_static_data                                       */
+/*==============================================================*/
+create table uip_static_data
+(
+  data_id              bigint not null,
+  data_type            varchar(255),
+  data_value           varchar(255),
+  data_name            varchar(255),
+  date_desc            varchar(1000),
+  sort                 int,
+  status               char(1),
+  primary key (data_id)
+);
+
+/*==============================================================*/
+/* Table: uip_param                                             */
+/*==============================================================*/
+create table uip_param
+(
+  seq                  bigint not null,
+  param_name           varchar(100),
+  param_code           varchar(100),
+  param_value          varchar(100),
+  is_null              char(1),
+  sort                 int,
+  param_type           char(1),
+  remark               varchar(1000),
+  primary key (seq)
 );
 
 create function currval (v_seq_name VARCHAR(50)) 

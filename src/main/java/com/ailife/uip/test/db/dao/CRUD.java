@@ -11,4 +11,8 @@ public interface CRUD {
 
 	public <T> void batchInsert(Class<T> clz, List<T> list);
 
+	public <T> void delete(T t);
+
+	public <T> List<T> selectAll();
+
 }

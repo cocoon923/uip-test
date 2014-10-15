@@ -1,4 +1,4 @@
-package com.ailife.uip.test.db.dao;
+package com.ailife.uip.test.db.dao.impl;
 
 import com.google.common.base.CaseFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +38,10 @@ public abstract class BaseDAO {
 			sqlParameterSources[i] = new BeanPropertySqlParameterSource(list.get(i));
 		}
 		this.getNamedParameterJdbcTemplatel().batchUpdate(getInsertSQL(clz), sqlParameterSources);
+	}
+
+	public <T> void delete(T t) {
+
 	}
 
 	private String getInsertSQL(Class<?> clz) {
