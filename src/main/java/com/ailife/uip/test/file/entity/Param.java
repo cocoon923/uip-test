@@ -19,11 +19,12 @@ public class Param implements Serializable, Cloneable {
 	private int sort;
 	private String paramType;
 	private String remark;
+	private long parentSeq;
 
 	public Param() {
 	}
 
-	public Param(long seq, String paramName, String paramCode, String paramValue, String isNull, int sort, String paramType, String remark) {
+	public Param(long seq, String paramName, String paramCode, String paramValue, String isNull, int sort, String paramType, String remark, long parentSeq) {
 		this.seq = seq;
 		this.paramName = paramName;
 		this.paramCode = paramCode;
@@ -32,6 +33,7 @@ public class Param implements Serializable, Cloneable {
 		this.sort = sort;
 		this.paramType = paramType;
 		this.remark = remark;
+		this.parentSeq = parentSeq;
 	}
 
 	public long getSeq() {
@@ -98,6 +100,14 @@ public class Param implements Serializable, Cloneable {
 		this.remark = remark;
 	}
 
+	public long getParentSeq() {
+		return parentSeq;
+	}
+
+	public void setParentSeq(long parentSeq) {
+		this.parentSeq = parentSeq;
+	}
+
 	public String getFullParamCode() {
 		String fullParamCode = this.getParamCode();
 		if ("0".equals(this.getParamType())) {
@@ -135,6 +145,7 @@ public class Param implements Serializable, Cloneable {
 				", sort=" + sort +
 				", paramType='" + paramType + '\'' +
 				", remark='" + remark + '\'' +
+				", parentSeq=" + parentSeq +
 				'}';
 	}
 
