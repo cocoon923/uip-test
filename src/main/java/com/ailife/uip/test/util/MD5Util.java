@@ -1,8 +1,6 @@
 package com.ailife.uip.test.util;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by chenmm on 10/14/2014.
@@ -22,10 +20,8 @@ public class MD5Util {
 			md.reset();
 			md.update(source.getBytes("UTF-8"));
 			result = md.digest();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LogUtil.error(MD5Util.class, "Encode to bytes error", e);
 		}
 
 		return result;

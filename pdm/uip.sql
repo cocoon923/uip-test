@@ -108,6 +108,13 @@ begin
 end;
 
 INSERT INTO sequence VALUES ('UIP_SEQ', 10000000, 1);
+
 INSERT INTO uip_user VALUES (nextval('UIP_SEQ'), 'AI-UIP', PASSWORD('AI-UIP'), 'ai-uip@asiainfo.com', '1', 'AI-UIP', now());
+
+INSERT INTO uip_param VALUES (nextval('UIP_SEQ'), '根节点', 'ROOT', 'ROOT', '0', 1, '0', 'ROOT', -1);
+
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-1', 'ROOT', '根节点', 1, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-2', 'REQUEST', '请求公共参数', 2, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-3', 'RESPONSE', '应答公共参数', 3, 'U');
 COMMIT;
 

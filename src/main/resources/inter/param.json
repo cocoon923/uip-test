@@ -7,7 +7,8 @@
         "isNull": "1",
         "sort": 1,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 2,
@@ -17,7 +18,8 @@
         "isNull": "0",
         "sort": 2,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 3,
@@ -27,7 +29,8 @@
         "isNull": "1",
         "sort": 3,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 4,
@@ -37,7 +40,8 @@
         "isNull": "1",
         "sort": 4,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 5,
@@ -47,7 +51,8 @@
         "isNull": "1",
         "sort": 5,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 6,
@@ -57,7 +62,8 @@
         "isNull": "1",
         "sort": 6,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 7,
@@ -67,7 +73,8 @@
         "isNull": "1",
         "sort": 7,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 8,
@@ -77,7 +84,8 @@
         "isNull": "1",
         "sort": 8,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 9,
@@ -87,7 +95,8 @@
         "isNull": "1",
         "sort": 9,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 10,
@@ -97,7 +106,8 @@
         "isNull": "1",
         "sort": 10,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 11,
@@ -107,7 +117,8 @@
         "isNull": "1",
         "sort": 11,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 12,
@@ -117,7 +128,8 @@
         "isNull": "0",
         "sort": 12,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 13,
@@ -127,7 +139,8 @@
         "isNull": "1",
         "sort": 13,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 14,
@@ -137,7 +150,8 @@
         "isNull": "1",
         "sort": 14,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 15,
@@ -147,7 +161,8 @@
         "isNull": "0",
         "sort": 15,
         "paramType": "0",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -2
     },
     {
         "seq": 16,
@@ -157,7 +172,8 @@
         "isNull": "1",
         "sort": 1,
         "paramType": "1",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -3
     },
     {
         "seq": 17,
@@ -167,7 +183,8 @@
         "isNull": "1",
         "sort": 2,
         "paramType": "1",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -3
     },
     {
         "seq": 18,
@@ -177,7 +194,8 @@
         "isNull": "1",
         "sort": 3,
         "paramType": "1",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -3
     },
     {
         "seq": 19,
@@ -187,7 +205,8 @@
         "isNull": "1",
         "sort": 4,
         "paramType": "1",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -3
     },
     {
         "seq": 20,
@@ -197,7 +216,8 @@
         "isNull": "1",
         "sort": 5,
         "paramType": "1",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -3
     },
     {
         "seq": 21,
@@ -207,6 +227,7 @@
         "isNull": "1",
         "sort": 6,
         "paramType": "1",
-        "remark": ""
+        "remark": "Public Parameter",
+        "parentSeq": -3
     }
 ]

@@ -18,7 +18,7 @@ import java.util.List;
 public abstract class BaseDAO {
 
 	@Autowired
-	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplatel() {
 		return namedParameterJdbcTemplate;

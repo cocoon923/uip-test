@@ -16,14 +16,15 @@ public class ParamRowMapper implements RowMapper<Param> {
 	@Override
 	public Param mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Param param = new Param();
-		param.setSeq(rs.getLong("SEQ"));
-		param.setParamName(rs.getString("PARAM_NAME"));
-		param.setParamCode(rs.getString("PARAM_CODE"));
-		param.setParamValue(rs.getString("PARAM_VALUE"));
-		param.setIsNull(rs.getString("IS_NULL"));
-		param.setSort(rs.getInt("SORT"));
-		param.setParamType(rs.getString("PARAM_TYPE"));
-		param.setRemark(rs.getString("REMARK"));
+		param.setSeq(rs.getLong("seq"));
+		param.setParamName(rs.getString("param_name"));
+		param.setParamCode(rs.getString("param_code"));
+		param.setParamValue(rs.getString("param_value"));
+		param.setIsNull(rs.getString("is_null"));
+		param.setSort(rs.getInt("sort"));
+		param.setParamType(rs.getString("param_type"));
+		param.setRemark(rs.getString("remark"));
+		param.setParentSeq(rs.getLong("parent_seq"));
 		return param;
 	}
 }

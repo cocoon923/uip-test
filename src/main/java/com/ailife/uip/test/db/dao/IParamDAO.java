@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface IParamDAO extends CRUD {
 
-		public List<Param> selectByBatchSeqs(String[] seqs);
+	public List<Param> selectByBatchSeqs(String[] seqs);
 
 }
