@@ -1,5 +1,6 @@
-package com.ailife.uip.test.db.dao;
+package com.ailife.uip.test.db.dao.impl;
 
+import com.ailife.uip.test.db.dao.IParamDAO;
 import com.ailife.uip.test.db.rowmapper.ParamRowMapper;
 import com.ailife.uip.test.file.entity.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,5 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 		parameterSource.addValue("seqs", Arrays.asList(seqs));
 		return this.getNamedParameterJdbcTemplatel().query(SELECT_BY_BATCH_SEQS, parameterSource, paramRowMapper);
 	}
+
 }
