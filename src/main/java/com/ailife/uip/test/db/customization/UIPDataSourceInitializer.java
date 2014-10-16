@@ -50,11 +50,11 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 
 	@Override
 	public void onApplicationEvent(DataInitialEvent<List<Param>> event) {
-		List<Param> paramList = event.getSource();
-		paramDAO.batchInsert(Param.class, paramList);
-		List<Param> dataList = paramDAO.selectAll();
-		for (Param param : dataList) {
-			LogUtil.debug(this.getClass(), param.toString());
-		}
+//		List<Param> paramList = event.getSource();
+//		paramDAO.batchInsert(Param.class, paramList);
+//		List<Param> dataList = paramDAO.selectAll();
+//		for (Param param : dataList) {
+//			LogUtil.debug(this.getClass(), param.toString());
+//		}
 	}
 }
