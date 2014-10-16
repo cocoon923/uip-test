@@ -18,8 +18,7 @@ mail:
         
 spring:
     datasource:
-        platform: uip
-        url: jdbc:hsqldb:mem:uip
-        username: uip
-        password: uip
+        url: jdbc:mysql://172.11.32.21:3306/uip
+        username: ailife
+        password: ailife
         continueOnError: false
