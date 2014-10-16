@@ -72,6 +72,7 @@ create table uip_param
   sort                 int,
   param_type           char(1),
   remark               varchar(1000),
+  parent_seq           bigint,
   primary key (seq)
 );
 
