@@ -37,4 +37,8 @@ public class Symbol {
 
 	public final static String QUESTION = "?";
 
+	public final static String PARENLEFT = "(";
+
+	public final static String PARENRIGHT = ")";
+
 }
