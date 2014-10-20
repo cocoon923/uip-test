@@ -11,8 +11,4 @@ public interface IStaticDataDAO {
 
 	public String getStaticDataValue(String dataType, String dataName);
 
-	public enum DATATYPE{
-		PUBLIC_PARAM
-	}
-
 }

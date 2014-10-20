@@ -16,7 +16,10 @@ import java.util.List;
 @Repository
 public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 
-	private static final String SELECT_BY_BATCH_SEQS = "SELECT * FROM UIP_PARAM WHERE SEQ IN (:seqs)";
+	private static final String SELECT_ALL = "SELECT * FROM uip_param";
+	private static final String SELECT_BY_BATCH_SEQS = "SELECT * FROM uip_param WHERE seq IN (:seqs)";
+	private static final String QUERY_BY_PARENTSEQ = "SELECT * FROM uip_param WHERE parent_seq = :parentSeq";
+	private static final String QUERY_COUNT_BY_PARENTSEQ = "SELECT COUNT(*) FROM uip_param WHERE parent_seq = :parentSeq";
 
 	@Autowired
 	private ParamRowMapper paramRowMapper;
@@ -28,4 +31,17 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 		return this.getNamedParameterJdbcTemplatel().query(SELECT_BY_BATCH_SEQS, parameterSource, paramRowMapper);
 	}
 
+	@Override
+	public List<Param> findParamByParentSeq(long parentSeq) {
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("parentSeq", parentSeq);
+		return this.getNamedParameterJdbcTemplatel().query(QUERY_BY_PARENTSEQ, parameterSource, paramRowMapper);
+	}
+
+	@Override
+	public int findParamCountByParentSeq(Long parentSeq) {
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("parentSeq", parentSeq);
+		return this.getNamedParameterJdbcTemplatel().queryForObject(QUERY_COUNT_BY_PARENTSEQ, parameterSource, Integer.class);
+	}
 }

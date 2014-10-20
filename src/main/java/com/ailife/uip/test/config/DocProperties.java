@@ -12,7 +12,9 @@ import javax.annotation.PostConstruct;
 public class DocProperties {
 
 	private String code;
-	private String basicParamPath;
+	private String rootParamPath;
+	private String requestParamPath;
+	private String responseParamPath;
 
 	@PostConstruct
 	public void log() {
@@ -27,19 +29,37 @@ public class DocProperties {
 		this.code = code;
 	}
 
-	public String getBasicParamPath() {
-		return basicParamPath;
+	public String getRootParamPath() {
+		return rootParamPath;
 	}
 
-	public void setBasicParamPath(String basicParamPath) {
-		this.basicParamPath = basicParamPath;
+	public void setRootParamPath(String rootParamPath) {
+		this.rootParamPath = rootParamPath;
+	}
+
+	public String getRequestParamPath() {
+		return requestParamPath;
+	}
+
+	public void setRequestParamPath(String requestParamPath) {
+		this.requestParamPath = requestParamPath;
+	}
+
+	public String getResponseParamPath() {
+		return responseParamPath;
+	}
+
+	public void setResponseParamPath(String responseParamPath) {
+		this.responseParamPath = responseParamPath;
 	}
 
 	@Override
 	public String toString() {
 		return "DocProperties{" +
 				"code='" + code + '\'' +
-				", basicParamPath='" + basicParamPath + '\'' +
+				", rootParamPath='" + rootParamPath + '\'' +
+				", requestParamPath='" + requestParamPath + '\'' +
+				", responseParamPath='" + responseParamPath + '\'' +
 				'}';
 	}
 }

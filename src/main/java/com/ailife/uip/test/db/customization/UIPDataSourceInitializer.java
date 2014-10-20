@@ -2,11 +2,16 @@ package com.ailife.uip.test.db.customization;
 
 import com.ailife.uip.test.config.DocProperties;
 import com.ailife.uip.test.db.dao.IParamDAO;
+import com.ailife.uip.test.db.dao.IStaticDataDAO;
+import com.ailife.uip.test.db.service.IParamService;
+import com.ailife.uip.test.db.util.IdGenerator;
+import com.ailife.uip.test.db.util.StaticDataUtil;
 import com.ailife.uip.test.event.DataInitialEvent;
 import com.ailife.uip.test.file.entity.Param;
 import com.ailife.uip.test.util.FileUtil;
 import com.ailife.uip.test.util.LogUtil;
 import com.alibaba.fastjson.JSONReader;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -29,23 +34,35 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 	private ConfigurableApplicationContext applicationContext;
 
 	@Autowired
-	private IParamDAO paramDAO;
+	private IParamService paramService;
 
 	@PostConstruct
 	protected void initialize() throws Exception {
+//		StaticDataUtil.getStaticData(PUBLIC_MEMBER).
+		String filePath = "";
+		initialPublicParams(filePath);
+	}
+
+	private void initialPublicParams(String filePath) {
+		List<Param> params = getParams(filePath);
+		if (params != null && params.size() > 0) {
+			this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
+		}
+	}
+
+	private List<Param> getParams(String filePath) {
 		List<Param> params = new ArrayList<Param>();
-		InputStream inputStream = FileUtil.loadFile(docProperties.getBasicParamPath());
+		InputStream inputStream = FileUtil.loadFile(filePath);
 		JSONReader jsonReader = new JSONReader(new InputStreamReader(inputStream));
 		jsonReader.startArray();
 		while (jsonReader.hasNext()) {
 			Param param = jsonReader.readObject(Param.class);
+			param.setSeq(IdGenerator.getNewId());
 			params.add(param);
 		}
 		jsonReader.endArray();
 		jsonReader.close();
-		if (params != null && params.size() > 0) {
-			this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
-		}
+		return params;
 	}
 
 	@Override

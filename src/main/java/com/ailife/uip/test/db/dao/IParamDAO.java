@@ -11,4 +11,8 @@ public interface IParamDAO extends CRUD {
 
 	public List<Param> selectByBatchSeqs(String[] seqs);
 
+	public List<Param> findParamByParentSeq(long parentSeq);
+
+	public int findParamCountByParentSeq(Long parentSeq);
+
 }
