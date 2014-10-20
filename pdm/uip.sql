@@ -27,7 +27,9 @@ CREATE TABLE sequence
   current_val   BIGINT,
   increment_val BIGINT,
   PRIMARY KEY (seq_name)
-);
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
 
 /*==============================================================*/
 /* Table: uip_user                                              */
@@ -42,7 +44,9 @@ CREATE TABLE uip_user
   validate_code VARCHAR(100) NOT NULL,
   register_time DATETIME     NOT NULL,
   PRIMARY KEY (user_id)
-);
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
 
 /*==============================================================*/
 /* Table: uip_static_data                                       */
@@ -57,7 +61,9 @@ CREATE TABLE uip_static_data
   sort       INT,
   status     CHAR(1),
   PRIMARY KEY (data_id)
-);
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
 
 /*==============================================================*/
 /* Table: uip_param                                             */
@@ -74,7 +80,9 @@ CREATE TABLE uip_param
   remark      VARCHAR(1000),
   parent_seq  BIGINT,
   PRIMARY KEY (seq)
-);
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
 
 CREATE FUNCTION currval(v_seq_name VARCHAR(50))
   RETURNS BIGINT(20)
@@ -110,11 +118,6 @@ CREATE FUNCTION setval(v_seq_name VARCHAR(50), v_new_val BIGINT)
   END;
 
 INSERT INTO sequence VALUES ('UIP_SEQ', 10000000, 1);
-
-INSERT INTO uip_user
-VALUES (nextval('UIP_SEQ'), 'AI-UIP', PASSWORD('AI-UIP'), 'ai-uip@asiainfo.com', '1', 'AI-UIP', now());
-
-INSERT INTO uip_param VALUES (nextval('UIP_SEQ'), '根节点', 'ROOT', 'ROOT', '0', 1, '0', 'ROOT', -1);
 
 INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-1', 'ROOT', '根节点', 1, 'U');
 INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-2', 'REQUEST', '请求公共参数', 2, 'U');

@@ -28,20 +28,20 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 	public List<Param> selectByBatchSeqs(final String[] seqs) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("seqs", Arrays.asList(seqs));
-		return this.getNamedParameterJdbcTemplatel().query(SELECT_BY_BATCH_SEQS, parameterSource, paramRowMapper);
+		return this.getNamedParameterJdbcTemplate().query(SELECT_BY_BATCH_SEQS, parameterSource, paramRowMapper);
 	}
 
 	@Override
 	public List<Param> findParamByParentSeq(long parentSeq) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
-		return this.getNamedParameterJdbcTemplatel().query(QUERY_BY_PARENTSEQ, parameterSource, paramRowMapper);
+		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ, parameterSource, paramRowMapper);
 	}
 
 	@Override
 	public int findParamCountByParentSeq(Long parentSeq) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
-		return this.getNamedParameterJdbcTemplatel().queryForObject(QUERY_COUNT_BY_PARENTSEQ, parameterSource, Integer.class);
+		return this.getNamedParameterJdbcTemplate().queryForObject(QUERY_COUNT_BY_PARENTSEQ, parameterSource, Integer.class);
 	}
 }

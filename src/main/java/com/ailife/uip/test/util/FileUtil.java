@@ -31,7 +31,6 @@ public class FileUtil {
 		LogUtil.debug(FileUtil.class, "Load File <" + file + ">");
 
 		ClassLoader classLoader = FileUtil.class.getClassLoader();
-		URL u = classLoader.getResource(file);
 		return classLoader.getResourceAsStream(file);
 	}
 

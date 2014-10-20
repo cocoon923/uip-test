@@ -1,13 +1,12 @@
 package com.ailife.uip.test.db.dao.impl;
 
+import com.ailife.uip.test.util.Symbol;
 import com.google.common.base.CaseFormat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.List;
@@ -20,15 +19,15 @@ public abstract class BaseDAO {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplatel() {
+	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
 		return namedParameterJdbcTemplate;
 	}
 
 	public <T> void save(T t) {
-		this.getNamedParameterJdbcTemplatel().update(getInsertSQL(t.getClass()), new BeanPropertySqlParameterSource(t));
+		this.getNamedParameterJdbcTemplate().update(getInsertSQL(t.getClass()), new BeanPropertySqlParameterSource(t));
 	}
 
-	public <T> void batchInsert(Class<T> clz, List<T> list) {
+	public <T> void batchSave(Class<T> clz, List<T> list) {
 		if (list == null || list.size() <= 0) {
 			return;
 		}
@@ -37,7 +36,7 @@ public abstract class BaseDAO {
 		for (int i = 0; i < size; i++) {
 			sqlParameterSources[i] = new BeanPropertySqlParameterSource(list.get(i));
 		}
-		this.getNamedParameterJdbcTemplatel().batchUpdate(getInsertSQL(clz), sqlParameterSources);
+		this.getNamedParameterJdbcTemplate().batchUpdate(getInsertSQL(clz), sqlParameterSources);
 	}
 
 	public <T> void delete(T t) {
@@ -48,18 +47,18 @@ public abstract class BaseDAO {
 		Field[] fields = clz.getDeclaredFields();
 		StringBuffer sbField = new StringBuffer();
 		StringBuffer sbParam = new StringBuffer();
-		sbField.append("INSERT INTO ").append("UIP_" + clz.getSimpleName().toUpperCase()).append(" (");
-		sbParam.append(") VALUES (");
+		sbField.append("INSERT INTO").append(Symbol.BLANK).append("uip" + Symbol.UNDERLINE + clz.getSimpleName().toLowerCase()).append(Symbol.BLANK).append(Symbol.PARENLEFT);
+		sbParam.append(Symbol.PARENRIGHT).append(Symbol.BLANK).append("VALUES").append(Symbol.BLANK).append(Symbol.PARENLEFT);
 		for (Field field : fields) {
 			if ((field.getModifiers() & Modifier.STATIC) == Modifier.STATIC) {
 				continue;
 			}
 			String fieldName = field.getName();
-			String underscoreFieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, fieldName);
-			sbField.append(underscoreFieldName).append(",");
-			sbParam.append(":").append(fieldName).append(",");
+			String underscoreFieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldName);
+			sbField.append(underscoreFieldName).append(Symbol.COMMA);
+			sbParam.append(Symbol.COLON).append(fieldName).append(Symbol.COMMA);
 		}
-		return sbField.substring(0, sbField.length() - 1) + sbParam.substring(0, sbParam.length() - 1) + ")";
+		return sbField.substring(0, sbField.length() - 1) + sbParam.substring(0, sbParam.length() - 1) + Symbol.PARENRIGHT;
 	}
 
 

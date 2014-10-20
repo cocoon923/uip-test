@@ -9,7 +9,7 @@ public interface CRUD {
 
 	public <T> void save(T t);
 
-	public <T> void batchInsert(Class<T> clz, List<T> list);
+	public <T> void batchSave(Class<T> clz, List<T> list);
 
 	public <T> void delete(T t);
 

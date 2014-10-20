@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by chenmm on 10/16/2014.
  */
 @Repository
-public class StaticDataDAOImpl implements IStaticDataDAO {
+public class StaticDataDAOImpl extends BaseDAO implements IStaticDataDAO {
 
 	private static final String GET_STATIC_DATA = "SELECT data_name, data_value FROM uip_static_data WHERE data_type = :dataType AND status = 'U'";
 	private static final String GET_STATIC_DATA_VALUE = "SELECT data_value FROM uip_static_data WHERE data_type = :dataType AND data_name = :dataName AND status = 'U'";

@@ -38,15 +38,32 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 
 	@PostConstruct
 	protected void initialize() throws Exception {
-//		StaticDataUtil.getStaticData(PUBLIC_MEMBER).
-		String filePath = "";
-		initialPublicParams(filePath);
+		initialPublicParams();
 	}
 
-	private void initialPublicParams(String filePath) {
-		List<Param> params = getParams(filePath);
-		if (params != null && params.size() > 0) {
-			this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
+	private void initialPublicParams() {
+		String rootValue = StaticDataUtil.getStaticDataValue(StaticDataUtil.DATATYPE.PUBLIC_PARAM.toString(), "ROOT");
+		if(!paramService.isPublicParamInitial(rootValue)){
+			List<Param> params = getParams(docProperties.getRootParamPath());
+			if (params != null && params.size() > 0) {
+				this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
+			}
+		}
+
+		String requestValue = StaticDataUtil.getStaticDataValue(StaticDataUtil.DATATYPE.PUBLIC_PARAM.toString(), "REQUEST");
+		if(!paramService.isPublicParamInitial(requestValue)){
+			List<Param> params = getParams(docProperties.getRequestParamPath());
+			if (params != null && params.size() > 0) {
+				this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
+			}
+		}
+
+		String responseValue = StaticDataUtil.getStaticDataValue(StaticDataUtil.DATATYPE.PUBLIC_PARAM.toString(), "RESPONSE");
+		if(!paramService.isPublicParamInitial(responseValue)){
+			List<Param> params = getParams(docProperties.getResponseParamPath());
+			if (params != null && params.size() > 0) {
+				this.applicationContext.publishEvent(new DataInitialEvent<List<Param>>(params));
+			}
 		}
 	}
 
@@ -67,11 +84,7 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 
 	@Override
 	public void onApplicationEvent(DataInitialEvent<List<Param>> event) {
-//		List<Param> paramList = event.getSource();
-//		paramDAO.batchInsert(Param.class, paramList);
-//		List<Param> dataList = paramDAO.selectAll();
-//		for (Param param : dataList) {
-//			LogUtil.debug(this.getClass(), param.toString());
-//		}
+		List<Param> paramList = event.getSource();
+		paramService.batchSave(paramList);
 	}
 }
