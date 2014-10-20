@@ -13,6 +13,4 @@ public interface CRUD {
 
 	public <T> void delete(T t);
 
-	public <T> List<T> selectAll();
-
 }

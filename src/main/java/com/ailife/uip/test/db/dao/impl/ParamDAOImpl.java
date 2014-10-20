@@ -16,16 +16,10 @@ import java.util.List;
 @Repository
 public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 
-	private static final String SELECT_ALL = "SELECT * FROM UIP_PARAM";
 	private static final String SELECT_BY_BATCH_SEQS = "SELECT * FROM UIP_PARAM WHERE SEQ IN (:seqs)";
 
 	@Autowired
 	private ParamRowMapper paramRowMapper;
-
-	@Override
-	public List<Param> selectAll() {
-		return this.getNamedParameterJdbcTemplatel().query(SELECT_ALL, paramRowMapper);
-	}
 
 	@Override
 	public List<Param> selectByBatchSeqs(final String[] seqs) {
