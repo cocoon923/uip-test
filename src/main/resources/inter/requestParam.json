@@ -1,0 +1,167 @@
+[
+    {
+        "seq": 1,
+        "paramName": "AppKey",
+        "paramCode": "AppKey",
+        "paramValue": "AppKey",
+        "isNull": "1",
+        "sort": 1,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 2,
+        "paramName": "API接口名称",
+        "paramCode": "BusiCode",
+        "paramValue": "BusiCode",
+        "isNull": "0",
+        "sort": 2,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 3,
+        "paramName": "交易流水号",
+        "paramCode": "TransactionID",
+        "paramValue": "TransactionID",
+        "isNull": "1",
+        "sort": 3,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 4,
+        "paramName": "请求时间",
+        "paramCode": "ReqTime",
+        "paramValue": "ReqTime",
+        "isNull": "1",
+        "sort": 4,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 5,
+        "paramName": "签名字符串",
+        "paramCode": "Sign",
+        "paramValue": "Sign",
+        "isNull": "1",
+        "sort": 5,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 6,
+        "paramName": "AccessToken",
+        "paramCode": "AccessToken",
+        "paramValue": "AccessToken",
+        "isNull": "1",
+        "sort": 6,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 7,
+        "paramName": "接口版本",
+        "paramCode": "Version",
+        "paramValue": "Version",
+        "isNull": "1",
+        "sort": 7,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 8,
+        "paramName": "落地方系统",
+        "paramCode": "DstSysID",
+        "paramValue": "DstSysID",
+        "isNull": "1",
+        "sort": 8,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 9,
+        "paramName": "租户id",
+        "paramCode": "TenantId",
+        "paramValue": "TenantId",
+        "isNull": "1",
+        "sort": 9,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 10,
+        "paramName": "受理地市",
+        "paramCode": "AcceptRegionCode",
+        "paramValue": "AcceptRegionCode",
+        "isNull": "1",
+        "sort": 10,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 11,
+        "paramName": "一次性费用",
+        "paramCode": "ChargeFlag",
+        "paramValue": "ChargeFlag",
+        "isNull": "1",
+        "sort": 11,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 12,
+        "paramName": "受理渠道类型",
+        "paramCode": "AcceptChannelType",
+        "paramValue": "AcceptChannelType",
+        "isNull": "0",
+        "sort": 12,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 13,
+        "paramName": "受理渠道",
+        "paramCode": "AcceptChannelCode",
+        "paramValue": "AcceptChannelCode",
+        "isNull": "1",
+        "sort": 13,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 14,
+        "paramName": "是否发送通知",
+        "paramCode": "NotifyFlag",
+        "paramValue": "NotifyFlag",
+        "isNull": "1",
+        "sort": 14,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    },
+    {
+        "seq": 15,
+        "paramName": "受理员工",
+        "paramCode": "AcceptStaffId",
+        "paramValue": "AcceptStaffId",
+        "isNull": "0",
+        "sort": 15,
+        "paramType": "0",
+        "remark": "Public Parameter",
+        "parentSeq": -2
+    }
+]
