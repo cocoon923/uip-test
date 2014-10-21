@@ -136,46 +136,9 @@ public class JsoupUtil {
 
 		List<Param> getParams() {
 			List<Param> list = new ArrayList<Param>();
-			list.addAll(getBasicParams(isReq));
 			list.addAll(dealWithTable());
 			paramCount = 1;
 			return list;
-		}
-
-		List<Param> getBasicParams(boolean isReq) {
-			List<Param> params = new ArrayList<Param>();
-			Param aParam;
-			if (isReq) {
-				for (String pubInfo : pubInfos) {
-					aParam = new Param();
-					if (pubInfo.contains("BusiCode") || pubInfo.contains("AcceptChannelType") || pubInfo.contains("AcceptStaffId")) {
-						aParam.setIsNull("0");
-					} else {
-						aParam.setIsNull("1");
-					}
-					aParam.setParamCode(StringUtils.substringBefore(pubInfo, "_"));
-//					aParam.setParamValue(StringUtils.substringBefore(pubInfo, "_"));
-					aParam.setParamType("0");
-					aParam.setParamName(StringUtils.substringAfter(pubInfo, "_"));
-					aParam.setSort(paramCount++);
-					aParam.setSeq(paramSeq++);
-					params.add(aParam);
-				}
-			} else {
-				for (String errorInfo : errorInfos) {
-					aParam = new Param();
-					aParam.setIsNull("1");
-					aParam.setParamCode(StringUtils.substringBefore(errorInfo, "_"));
-//					aParam.setParamValue(StringUtils.substringBefore(errorInfo, "_"));
-					aParam.setParamType("1");
-					aParam.setParamName(StringUtils.substringAfter(errorInfo, "_"));
-					aParam.setSort(paramCount++);
-					aParam.setSeq(paramSeq++);
-					params.add(aParam);
-				}
-			}
-
-			return params;
 		}
 
 		private List<Param> dealWithTable() {

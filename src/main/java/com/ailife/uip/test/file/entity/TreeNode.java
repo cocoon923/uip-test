@@ -51,4 +51,8 @@ public class TreeNode<T> {
 		return this.children == null || this.children.size() == 0;
 	}
 
+	public void addChild(TreeNode<T> child) {
+		this.getChildren().add(child);
+	}
+
 }

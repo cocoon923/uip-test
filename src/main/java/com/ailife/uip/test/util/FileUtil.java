@@ -1,10 +1,6 @@
 package com.ailife.uip.test.util;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import java.io.*;
 
 /**
  * Created by chenmm on 9/25/2014.
@@ -27,11 +23,21 @@ public class FileUtil {
 		}
 	}
 
-	public static InputStream loadFile(String file) {
-		LogUtil.debug(FileUtil.class, "Load File <" + file + ">");
+	public static InputStream loadProjectFile(String file) {
+		try {
+			File localFile = new File(file);
+			if (localFile.exists()) {
+				return new FileInputStream(localFile);
+			}
+		} catch (FileNotFoundException e) {
+			LogUtil.error(FileUtil.class, "File not found!", e);
+		}
+		return null;
+	}
 
-		ClassLoader classLoader = FileUtil.class.getClassLoader();
-		return classLoader.getResourceAsStream(file);
+	public static InputStream loadClassPathFile(String file) {
+		LogUtil.debug(FileUtil.class, "Load File <" + file + ">");
+		return FileUtil.class.getClassLoader().getResourceAsStream(file);
 	}
 
 }
