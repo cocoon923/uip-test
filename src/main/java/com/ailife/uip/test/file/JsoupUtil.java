@@ -154,7 +154,7 @@ public class JsoupUtil {
 						aParam.setIsNull("1");
 					}
 					aParam.setParamCode(StringUtils.substringBefore(pubInfo, "_"));
-					aParam.setParamValue(StringUtils.substringBefore(pubInfo, "_"));
+//					aParam.setParamValue(StringUtils.substringBefore(pubInfo, "_"));
 					aParam.setParamType("0");
 					aParam.setParamName(StringUtils.substringAfter(pubInfo, "_"));
 					aParam.setSort(paramCount++);
@@ -166,7 +166,7 @@ public class JsoupUtil {
 					aParam = new Param();
 					aParam.setIsNull("1");
 					aParam.setParamCode(StringUtils.substringBefore(errorInfo, "_"));
-					aParam.setParamValue(StringUtils.substringBefore(errorInfo, "_"));
+//					aParam.setParamValue(StringUtils.substringBefore(errorInfo, "_"));
 					aParam.setParamType("1");
 					aParam.setParamName(StringUtils.substringAfter(errorInfo, "_"));
 					aParam.setSort(paramCount++);
@@ -241,7 +241,7 @@ public class JsoupUtil {
 					String[] values = paramExpr.split(">>");
 					Param param = new Param();
 					param.setParamCode(values[0]);
-					param.setParamValue(values[0]);
+//					param.setParamValue(values[0]);
 					param.setParamName(values[1]);
 					param.setParamType(isReq ? "0" : "1");
 					param.setIsNull(StringUtils.isBlank(values[2]) || "0".equals(values[2]) ? "1" : "0");

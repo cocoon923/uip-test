@@ -19,7 +19,8 @@ public class ParamRowMapper implements RowMapper<Param> {
 		param.setSeq(rs.getLong("seq"));
 		param.setParamName(rs.getString("param_name"));
 		param.setParamCode(rs.getString("param_code"));
-		param.setParamValue(rs.getString("param_value"));
+		param.setParamClazz(rs.getString("param_clazz"));
+		param.setParamLength(rs.getString("param_length"));
 		param.setIsNull(rs.getString("is_null"));
 		param.setSort(rs.getInt("sort"));
 		param.setParamType(rs.getString("param_type"));
