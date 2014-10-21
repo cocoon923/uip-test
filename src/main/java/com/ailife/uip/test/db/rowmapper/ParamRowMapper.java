@@ -1,6 +1,6 @@
 package com.ailife.uip.test.db.rowmapper;
 
-import com.ailife.uip.test.file.entity.Param;
+import com.ailife.uip.test.db.entity.Param;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +21,7 @@ public class ParamRowMapper implements RowMapper<Param> {
 		param.setParamCode(rs.getString("param_code"));
 		param.setParamClazz(rs.getString("param_clazz"));
 		param.setParamLength(rs.getString("param_length"));
-		param.setIsNull(rs.getString("is_null"));
+		param.setParamTimes(rs.getString("param_times"));
 		param.setSort(rs.getInt("sort"));
 		param.setParamType(rs.getString("param_type"));
 		param.setRemark(rs.getString("remark"));

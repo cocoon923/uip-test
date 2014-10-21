@@ -25,7 +25,7 @@ public class DocIntialListener implements ApplicationListener<DocInitialEvent<Fi
 		try {
 			File file = event.getSource();
 			if (file.exists()) {
-				jsoupUtil.parseHtml(TikaUtil.parse(file));
+//				jsoupUtil.parseHtml(TikaUtil.parse(file));
 				List<Inter> inters = jsoupUtil.getInterList();
 			} else {
 				LogUtil.error(this.getClass(), "file is not exists!");

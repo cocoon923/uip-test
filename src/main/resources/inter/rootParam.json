@@ -1,11 +1,20 @@
 [
     {
-        "paramName": "根节点",
-        "paramCode": "ROOT",
-        "isNull": "0",
+        "paramName": "输入参数根节点",
+        "paramCode": "RequestBody",
+        "paramTimes": "1",
         "sort": 1,
         "paramType": "0",
-        "remark": "ROOT",
+        "remark": "REQUEST_ROOT",
+        "parentSeq": -1
+    },
+    {
+        "paramName": "输出参数根节点",
+        "paramCode": "ResponseBody",
+        "paramTimes": "1",
+        "sort": 1,
+        "paramType": "1",
+        "remark": "RESPONSE_ROOT",
         "parentSeq": -1
     }
 ]

@@ -1,4 +1,4 @@
-package com.ailife.uip.test.file;
+package com.ailife.uip.test.util;
 
 /**
  * Created by chenmm on 9/25/2014.

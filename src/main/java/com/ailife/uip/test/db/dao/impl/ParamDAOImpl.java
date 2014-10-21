@@ -2,7 +2,9 @@ package com.ailife.uip.test.db.dao.impl;
 
 import com.ailife.uip.test.db.dao.IParamDAO;
 import com.ailife.uip.test.db.rowmapper.ParamRowMapper;
-import com.ailife.uip.test.file.entity.Param;
+import com.ailife.uip.test.db.entity.Param;
+import com.ailife.uip.test.db.util.StaticDataUtil;
+import com.ailife.uip.test.util.DATATYPE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -16,32 +18,42 @@ import java.util.List;
 @Repository
 public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 
-	private static final String SELECT_ALL = "SELECT * FROM uip_param";
-	private static final String SELECT_BY_BATCH_SEQS = "SELECT * FROM uip_param WHERE seq IN (:seqs)";
 	private static final String QUERY_BY_PARENTSEQ = "SELECT * FROM uip_param WHERE parent_seq = :parentSeq";
 	private static final String QUERY_COUNT_BY_PARENTSEQ = "SELECT COUNT(*) FROM uip_param WHERE parent_seq = :parentSeq";
+	private static final String QUERY_BY_PARENTSEQ_PARAMTYPE = "SELECT * FROM uip_param WHERE parent_seq = :parentSeq AND param_type = :paramType";
 
 	@Autowired
 	private ParamRowMapper paramRowMapper;
 
 	@Override
-	public List<Param> selectByBatchSeqs(final String[] seqs) {
-		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-		parameterSource.addValue("seqs", Arrays.asList(seqs));
-		return this.getNamedParameterJdbcTemplate().query(SELECT_BY_BATCH_SEQS, parameterSource, paramRowMapper);
-	}
-
-	@Override
-	public List<Param> findParamByParentSeq(long parentSeq) {
+	public List<Param> queryParamByParentSeq(long parentSeq) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
 		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ, parameterSource, paramRowMapper);
 	}
 
 	@Override
-	public int findParamCountByParentSeq(Long parentSeq) {
+	public int queryParamCountByParentSeq(Long parentSeq) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
 		return this.getNamedParameterJdbcTemplate().queryForObject(QUERY_COUNT_BY_PARENTSEQ, parameterSource, Integer.class);
+	}
+
+	@Override
+	public List<Param> queryReqParamByParentSeq(long parentSeq) {
+		String paramType = StaticDataUtil.getStaticDataValue(DATATYPE.PARAM_TYPE.toString(), "REQUEST");
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("parentSeq", parentSeq);
+		parameterSource.addValue("paramType", paramType);
+		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ_PARAMTYPE, parameterSource, paramRowMapper);
+	}
+
+	@Override
+	public List<Param> queryRespParamByParentSeq(long parentSeq) {
+		String paramType = StaticDataUtil.getStaticDataValue(DATATYPE.PARAM_TYPE.toString(), "RESPONSE");
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("parentSeq", parentSeq);
+		parameterSource.addValue("paramType", paramType);
+		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ_PARAMTYPE, parameterSource, paramRowMapper);
 	}
 }

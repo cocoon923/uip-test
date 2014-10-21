@@ -1,4 +1,4 @@
-package com.ailife.uip.test.file.entity;
+package com.ailife.uip.test.util;
 
 /**
  * Created by chenmm on 9/30/2014.
@@ -7,17 +7,18 @@ public class Tree<T> {
 
 	private TreeNode<T> root;
 
-	public Tree() {
+	public Tree(T rootNode) {
+		root = new TreeNode<T>(rootNode);
 	}
 
-	public void addNode(TreeNode<T> node, T newNode) {
-		if (node == null) {
+	public void addNode(TreeNode<T> parentNode, T newNode) {
+		if (parentNode == null) {
 			if (null == root) {
 				root = new TreeNode<T>(newNode);
 			}
 		} else {
 			TreeNode<T> temp = new TreeNode<T>(newNode);
-			node.getChildren().add(temp);
+			parentNode.getChildren().add(temp);
 		}
 	}
 

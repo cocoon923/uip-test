@@ -16,6 +16,10 @@ public class StringUtils {
 		return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, source);
 	}
 
+	public static String caseFormatTransfer(CaseFormat from, CaseFormat to, String source){
+		return from.to(to, source);
+	}
+
 	public static boolean isNotNullorEmpty(String... strs) {
 		for (String str : strs) {
 			if (Strings.isNullOrEmpty(str)) {

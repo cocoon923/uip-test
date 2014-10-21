@@ -1,4 +1,4 @@
-package com.ailife.uip.test.file.entity;
+package com.ailife.uip.test.db.entity;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ public class Param implements Serializable {
 	private String paramCode;
 	private String paramClazz;
 	private String paramLength;
-	private String isNull;
+	private String paramTimes;
 	private int sort;
 	private String paramType;
 	private String remark;
@@ -22,13 +22,13 @@ public class Param implements Serializable {
 	public Param() {
 	}
 
-	public Param(long seq, String paramName, String paramCode, String paramClazz, String paramLength, String isNull, int sort, String paramType, String remark, long parentSeq) {
+	public Param(long seq, String paramName, String paramCode, String paramClazz, String paramLength, String paramTimes, int sort, String paramType, String remark, long parentSeq) {
 		this.seq = seq;
 		this.paramName = paramName;
 		this.paramCode = paramCode;
 		this.paramClazz = paramClazz;
 		this.paramLength = paramLength;
-		this.isNull = isNull;
+		this.paramTimes = paramTimes;
 		this.sort = sort;
 		this.paramType = paramType;
 		this.remark = remark;
@@ -75,12 +75,12 @@ public class Param implements Serializable {
 		this.paramLength = paramLength;
 	}
 
-	public String getIsNull() {
-		return isNull;
+	public String getParamTimes() {
+		return paramTimes;
 	}
 
-	public void setIsNull(String isNull) {
-		this.isNull = isNull;
+	public void setParamTimes(String paramTimes) {
+		this.paramTimes = paramTimes;
 	}
 
 	public int getSort() {
@@ -123,11 +123,31 @@ public class Param implements Serializable {
 				", paramCode='" + paramCode + '\'' +
 				", paramClazz='" + paramClazz + '\'' +
 				", paramLength='" + paramLength + '\'' +
-				", isNull='" + isNull + '\'' +
+				", paramTimes='" + paramTimes + '\'' +
 				", sort=" + sort +
 				", paramType='" + paramType + '\'' +
 				", remark='" + remark + '\'' +
 				", parentSeq=" + parentSeq +
 				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Param param = (Param) o;
+
+		if (parentSeq != param.parentSeq) return false;
+		if (seq != param.seq) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = (int) (seq ^ (seq >>> 32));
+		result = 31 * result + (int) (parentSeq ^ (parentSeq >>> 32));
+		return result;
 	}
 }

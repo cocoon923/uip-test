@@ -1,6 +1,6 @@
 package com.ailife.uip.test.db.dao;
 
-import com.ailife.uip.test.file.entity.Param;
+import com.ailife.uip.test.db.entity.Param;
 
 import java.util.List;
 
@@ -9,10 +9,12 @@ import java.util.List;
  */
 public interface IParamDAO extends CRUD {
 
-	public List<Param> selectByBatchSeqs(String[] seqs);
+	public List<Param> queryParamByParentSeq(long parentSeq);
 
-	public List<Param> findParamByParentSeq(long parentSeq);
+	public int queryParamCountByParentSeq(Long parentSeq);
 
-	public int findParamCountByParentSeq(Long parentSeq);
+	public List<Param> queryReqParamByParentSeq(long parentSeq);
+
+	public List<Param> queryRespParamByParentSeq(long parentSeq);
 
 }

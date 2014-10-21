@@ -1,9 +1,11 @@
 package com.ailife.uip.test.file;
 
 import com.ailife.uip.test.config.DocProperties;
+import com.ailife.uip.test.db.util.IdGenerator;
 import com.ailife.uip.test.file.entity.AiCrmTree;
 import com.ailife.uip.test.file.entity.Inter;
-import com.ailife.uip.test.file.entity.Param;
+import com.ailife.uip.test.db.entity.Param;
+import com.ailife.uip.test.util.HTMLLEVEL;
 import com.google.common.base.Strings;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
@@ -47,13 +49,13 @@ public class JsoupUtil {
 			String[] h3Fragments = getFragments(h2Fragments[i], HTMLLEVEL.h3);
 			for (int j = 1; j < h3Fragments.length; j++) {
 				Inter inter = new Inter();
+				inter.setSeq(IdGenerator.getNewId());
+
 				Document interDocument = Jsoup.parseBodyFragment(h3Fragments[j]);
 				Element titleElement = getElement(interDocument, HTMLLEVEL.h3);
 				inter.setName(titleElement.text().trim());
 				inter.setImplClass(entry.getValue());
-				inter.setInterfaceCode(docProperties.getCode());
 				String seq = getInterSeq(i, j);
-				inter.setServiceSeq(Long.parseLong(seq));
 				Elements descElementTrs = getNextElement(titleElement, HTMLLEVEL.table).child(0).children();
 				inter.setDesc(descElementTrs.get(1).child(1).text());
 				inter.setBusiCode(descElementTrs.get(6).child(1).text());
@@ -207,7 +209,7 @@ public class JsoupUtil {
 //					param.setParamValue(values[0]);
 					param.setParamName(values[1]);
 					param.setParamType(isReq ? "0" : "1");
-					param.setIsNull(StringUtils.isBlank(values[2]) || "0".equals(values[2]) ? "1" : "0");
+					param.setParamTimes(StringUtils.isBlank(values[2]) || "0".equals(values[2]) ? "1" : "0");
 					param.setSort(paramCount++);
 					param.setSeq(paramSeq++);
 					list.add(param);

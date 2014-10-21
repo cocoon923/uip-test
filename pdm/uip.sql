@@ -75,7 +75,7 @@ CREATE TABLE uip_param
   param_code   VARCHAR(100),
   param_clazz  VARCHAR(100),
   param_length VARCHAR(20),
-  is_null      CHAR(1),
+  param_times  CHAR(1),
   sort         INT,
   param_type   CHAR(1),
   remark       VARCHAR(1000),
@@ -123,5 +123,17 @@ INSERT INTO sequence VALUES ('UIP_SEQ', 10000000, 1);
 INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-1', 'ROOT', '根节点', 1, 'U');
 INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-2', 'REQUEST', '请求公共参数', 2, 'U');
 INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PUBLIC_PARAM', '-3', 'RESPONSE', '应答公共参数', 3, 'U');
+
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_TIMES', '1', 'REQUIRED', '必选', 1, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_TIMES', '?', 'OPTIONAL', '可选', 2, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_TIMES', '*', 'MANY_TIMES', '多次', 3, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_TIMES', '+', 'REQUIRED_ONCE_MORE', '至少一次', 4, 'U');
+
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_CLAZZ', 'String', 'String', '字符串', 1, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_CLAZZ', 'Number', 'Number', '数字', 2, 'U');
+
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_TYPE', '0', 'REQUEST', '输入参数', 1, 'U');
+INSERT INTO uip_static_data VALUES (nextval('UIP_SEQ'), 'PARAM_TYPE', '1', 'RESPONSE', '输出参数', 1, 'U');
+
 COMMIT;
 

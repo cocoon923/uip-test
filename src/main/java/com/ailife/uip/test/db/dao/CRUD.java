@@ -13,4 +13,6 @@ public interface CRUD {
 
 	public <T> void delete(T t);
 
+	public <T> T queryById(Class<T> clz, long seq);
+
 }

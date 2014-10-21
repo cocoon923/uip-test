@@ -1,4 +1,4 @@
-package com.ailife.uip.test.file.entity;
+package com.ailife.uip.test.util;
 
 import java.util.ArrayList;
 import java.util.List;

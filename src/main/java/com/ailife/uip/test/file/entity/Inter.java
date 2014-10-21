@@ -1,5 +1,7 @@
 package com.ailife.uip.test.file.entity;
 
+import com.ailife.uip.test.db.entity.Param;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +11,23 @@ import java.util.List;
  */
 public class Inter implements Serializable {
 
+	private long seq;
 	private String name;
 	private String desc;
-	private String serviceType = "1";
 	private String busiCode;
-	private String accessCode;
-	private String interfaceCode = "1000000001";
-	private long serviceSeq;
-	private long paramSeq;
 	private String implClass;
 	private String invokeMethod;
+	private int sort;
 	private String remarks;
 	private List<Param> params = new ArrayList<Param>();
+
+	public long getSeq() {
+		return seq;
+	}
+
+	public void setSeq(long seq) {
+		this.seq = seq;
+	}
 
 	public String getName() {
 		return name;
@@ -34,14 +41,6 @@ public class Inter implements Serializable {
 		return desc;
 	}
 
-	public String getServiceType() {
-		return serviceType;
-	}
-
-	public void setServiceType(String serviceType) {
-		this.serviceType = serviceType;
-	}
-
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
@@ -52,40 +51,6 @@ public class Inter implements Serializable {
 
 	public void setBusiCode(String busiCode) {
 		this.busiCode = busiCode;
-		this.accessCode = busiCode;
-		this.invokeMethod = busiCode.substring(0, 1).toLowerCase() + busiCode.substring(1);
-	}
-
-	public String getAccessCode() {
-		return accessCode;
-	}
-
-	public void setAccessCode(String accessCode) {
-		this.accessCode = accessCode;
-	}
-
-	public String getInterfaceCode() {
-		return interfaceCode;
-	}
-
-	public void setInterfaceCode(String interfaceCode) {
-		this.interfaceCode = interfaceCode;
-	}
-
-	public long getServiceSeq() {
-		return serviceSeq;
-	}
-
-	public void setServiceSeq(long serviceSeq) {
-		this.serviceSeq = serviceSeq;
-	}
-
-	public long getParamSeq() {
-		return paramSeq;
-	}
-
-	public void setParamSeq(long paramSeq) {
-		this.paramSeq = paramSeq;
 	}
 
 	public String getImplClass() {
@@ -104,6 +69,14 @@ public class Inter implements Serializable {
 		this.invokeMethod = invokeMethod;
 	}
 
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
 	public String getRemarks() {
 		return remarks;
 	}
@@ -120,12 +93,7 @@ public class Inter implements Serializable {
 		this.params = params;
 	}
 
-	public void addParam(Param param) {
-		this.params.add(param);
-	}
-
 	public void addParams(List<Param> params) {
 		this.params.addAll(params);
 	}
-
 }

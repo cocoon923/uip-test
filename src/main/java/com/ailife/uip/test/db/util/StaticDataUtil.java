@@ -1,8 +1,9 @@
 package com.ailife.uip.test.db.util;
 
 import com.ailife.uip.test.db.dao.IStaticDataDAO;
+import com.ailife.uip.test.db.entity.Param;
+import com.ailife.uip.test.db.service.IParamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -14,23 +15,45 @@ import java.util.Map;
 @Repository
 public class StaticDataUtil {
 
-	@Autowired
-	public void init(IStaticDataDAO staticDataDAO) {
-		StaticDataUtil.staticDataDAO = staticDataDAO;
-	}
-
-	private static IStaticDataDAO staticDataDAO;
+	private static StaticDataConfiguration staticDataConfiguration;
 
 	public static Map<String, String> getStaticData(String dataType) {
-		return staticDataDAO.getStaticData(dataType);
+		return staticDataConfiguration.getStaticDataDAO().getStaticData(dataType);
 	}
 
 	public static String getStaticDataValue(String dataType, String dataName) {
-		return staticDataDAO.getStaticDataValue(dataType, dataName);
+		return staticDataConfiguration.getStaticDataDAO().getStaticDataValue(dataType, dataName);
 	}
 
-	public enum DATATYPE {
-		PUBLIC_PARAM
+	public static Param getReqRootParam() {
+		return staticDataConfiguration.getParamService().getReqRootParam();
+	}
+
+	public static Param getRespRootParam() {
+		return staticDataConfiguration.getParamService().getRespRootParam();
+	}
+
+	@Repository
+	private static class StaticDataConfiguration {
+
+		@Autowired
+		private IStaticDataDAO staticDataDAO;
+
+		@Autowired
+		private IParamService paramService;
+
+		@PostConstruct
+		public void initial() {
+			StaticDataUtil.staticDataConfiguration = this;
+		}
+
+		public IStaticDataDAO getStaticDataDAO() {
+			return staticDataDAO;
+		}
+
+		public IParamService getParamService() {
+			return paramService;
+		}
 	}
 
 }
