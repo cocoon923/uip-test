@@ -6,15 +6,13 @@ import java.io.Serializable;
  * Created by chenmm on 9/28/2014.
  */
 
-public class Param implements Serializable, Cloneable {
-
-	private final static String REQUERT_HEAD = "RequestHead";
-	private final static String RESPONSE_HEAD = "ResponseHead";
+public class Param implements Serializable {
 
 	private long seq;
 	private String paramName;
 	private String paramCode;
-	private String paramValue;
+	private String paramClazz;
+	private String paramLength;
 	private String isNull;
 	private int sort;
 	private String paramType;
@@ -24,11 +22,12 @@ public class Param implements Serializable, Cloneable {
 	public Param() {
 	}
 
-	public Param(long seq, String paramName, String paramCode, String paramValue, String isNull, int sort, String paramType, String remark, long parentSeq) {
+	public Param(long seq, String paramName, String paramCode, String paramClazz, String paramLength, String isNull, int sort, String paramType, String remark, long parentSeq) {
 		this.seq = seq;
 		this.paramName = paramName;
 		this.paramCode = paramCode;
-		this.paramValue = paramValue;
+		this.paramClazz = paramClazz;
+		this.paramLength = paramLength;
 		this.isNull = isNull;
 		this.sort = sort;
 		this.paramType = paramType;
@@ -60,12 +59,20 @@ public class Param implements Serializable, Cloneable {
 		this.paramCode = paramCode;
 	}
 
-	public String getParamValue() {
-		return paramValue;
+	public String getParamClazz() {
+		return paramClazz;
 	}
 
-	public void setParamValue(String paramValue) {
-		this.paramValue = paramValue;
+	public void setParamClazz(String paramClazz) {
+		this.paramClazz = paramClazz;
+	}
+
+	public String getParamLength() {
+		return paramLength;
+	}
+
+	public void setParamLength(String paramLength) {
+		this.paramLength = paramLength;
 	}
 
 	public String getIsNull() {
@@ -108,50 +115,19 @@ public class Param implements Serializable, Cloneable {
 		this.parentSeq = parentSeq;
 	}
 
-	public String getFullParamCode() {
-		String fullParamCode = this.getParamCode();
-		if ("0".equals(this.getParamType())) {
-			fullParamCode = REQUERT_HEAD + ":" + fullParamCode;
-		} else if ("1".equals(this.getParamType())) {
-			fullParamCode = RESPONSE_HEAD + ":" + fullParamCode;
-		}
-		return fullParamCode;
-	}
-
-
-	public String getFullParamValue() {
-		String fullParamValue = this.getParamValue();
-		if ("0".equals(this.getParamType())) {
-			fullParamValue = REQUERT_HEAD + ":" + fullParamValue;
-		} else if ("1".equals(this.getParamType())) {
-			fullParamValue = RESPONSE_HEAD + ":" + fullParamValue;
-		}
-		return fullParamValue;
-	}
-
-	@Override
-	protected Param clone() throws CloneNotSupportedException {
-		return (Param) super.clone();
-	}
-
 	@Override
 	public String toString() {
 		return "Param{" +
 				"seq=" + seq +
 				", paramName='" + paramName + '\'' +
 				", paramCode='" + paramCode + '\'' +
-				", paramValue='" + paramValue + '\'' +
+				", paramClazz='" + paramClazz + '\'' +
+				", paramLength='" + paramLength + '\'' +
 				", isNull='" + isNull + '\'' +
 				", sort=" + sort +
 				", paramType='" + paramType + '\'' +
 				", remark='" + remark + '\'' +
 				", parentSeq=" + parentSeq +
 				'}';
-	}
-
-	public Param generateInterParm(String interSeq) throws Exception {
-		Param interParam = this.clone();
-		interParam.setSeq(Long.parseLong(interSeq + "000") + this.getSeq());
-		return interParam;
 	}
 }

@@ -70,15 +70,16 @@ CREATE TABLE uip_static_data
 /*==============================================================*/
 CREATE TABLE uip_param
 (
-  seq         BIGINT NOT NULL,
-  param_name  VARCHAR(100),
-  param_code  VARCHAR(100),
-  param_value VARCHAR(100),
-  is_null     CHAR(1),
-  sort        INT,
-  param_type  CHAR(1),
-  remark      VARCHAR(1000),
-  parent_seq  BIGINT,
+  seq          BIGINT NOT NULL,
+  param_name   VARCHAR(100),
+  param_code   VARCHAR(100),
+  param_clazz  VARCHAR(100),
+  param_length VARCHAR(20),
+  is_null      CHAR(1),
+  sort         INT,
+  param_type   CHAR(1),
+  remark       VARCHAR(1000),
+  parent_seq   BIGINT,
   PRIMARY KEY (seq)
 )
   ENGINE =InnoDB
