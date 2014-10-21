@@ -1,4 +1,4 @@
-package com.ailife.uip.test.file;
+package com.ailife.uip.test.util;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.ContentHandler;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 
 /**
@@ -18,10 +16,9 @@ public class TikaUtil {
 
 	private final static Logger logger = LoggerFactory.getLogger(TikaUtil.class);
 
-	public static String parse(File file) {
+	public static String parse(InputStream inputStream) {
 		try {
 			ContentHandler handler = new ToXMLContentHandler();
-			InputStream inputStream = new FileInputStream(file);
 			AutoDetectParser parser = new AutoDetectParser();
 			Metadata metadata = new Metadata();
 			try {

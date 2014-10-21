@@ -15,6 +15,7 @@ public class DocProperties {
 	private String rootParamPath;
 	private String requestParamPath;
 	private String responseParamPath;
+	private String docPath;
 
 	@PostConstruct
 	public void log() {
@@ -53,6 +54,14 @@ public class DocProperties {
 		this.responseParamPath = responseParamPath;
 	}
 
+	public String getDocPath() {
+		return docPath;
+	}
+
+	public void setDocPath(String docPath) {
+		this.docPath = docPath;
+	}
+
 	@Override
 	public String toString() {
 		return "DocProperties{" +
@@ -60,6 +69,7 @@ public class DocProperties {
 				", rootParamPath='" + rootParamPath + '\'' +
 				", requestParamPath='" + requestParamPath + '\'' +
 				", responseParamPath='" + responseParamPath + '\'' +
+				", docPath='" + docPath + '\'' +
 				'}';
 	}
 }

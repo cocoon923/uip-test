@@ -1,7 +1,7 @@
 package com.ailife.uip.test.event;
 
 import com.ailife.uip.test.file.JsoupUtil;
-import com.ailife.uip.test.file.TikaUtil;
+import com.ailife.uip.test.util.TikaUtil;
 import com.ailife.uip.test.file.entity.Inter;
 import com.ailife.uip.test.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;

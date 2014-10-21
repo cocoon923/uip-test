@@ -5,6 +5,7 @@ import com.ailife.uip.test.db.service.IParamService;
 import com.ailife.uip.test.db.util.IdGenerator;
 import com.ailife.uip.test.db.util.StaticDataUtil;
 import com.ailife.uip.test.event.DataInitialEvent;
+import com.ailife.uip.test.util.TikaUtil;
 import com.ailife.uip.test.file.entity.Param;
 import com.ailife.uip.test.util.FileUtil;
 import com.alibaba.fastjson.JSONReader;
@@ -39,7 +40,8 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 	}
 
 	private void initialDocument() {
-
+		InputStream inputStream = FileUtil.loadProjectFile(docProperties.getDocPath());
+		String html = TikaUtil.parse(inputStream);
 	}
 
 	private void initialPublicParams() {
