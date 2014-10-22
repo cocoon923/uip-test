@@ -96,4 +96,18 @@ public class Inter implements Serializable {
 	public void addParams(List<Param> params) {
 		this.params.addAll(params);
 	}
+
+	@Override
+	public String toString() {
+		return "Inter{" +
+				"seq=" + seq +
+				", name='" + name + '\'' +
+				", desc='" + desc + '\'' +
+				", busiCode='" + busiCode + '\'' +
+				", implClass='" + implClass + '\'' +
+				", invokeMethod='" + invokeMethod + '\'' +
+				", sort=" + sort +
+				", remarks='" + remarks + '\'' +
+				'}';
+	}
 }

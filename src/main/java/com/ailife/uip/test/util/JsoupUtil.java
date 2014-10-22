@@ -46,6 +46,7 @@ public class JsoupUtil {
 				Element respParams = getNextElement(getElement(interDocument, HTMLLEVEL.h4, "输出参数"), HTMLLEVEL.table);
 				inter.addParams(getParamsFromTable(reqParams, true));
 				inter.addParams(getParamsFromTable(respParams, false));
+				LogUtil.debug(JsoupUtil.class, "Load Inter: " + inter + Symbol.CRLF);
 				interList.add(inter);
 			}
 		}
@@ -62,7 +63,11 @@ public class JsoupUtil {
 		stack.push(previousParam);
 		if (element != null) {
 			Elements trs = element.child(0).children();
-			for (Element tr : trs) {
+			for (int i = 1; i < trs.size(); i++) {
+
+
+
+				Element tr = trs.get(i);
 				String parentParamCode = tr.child(0).text().trim();
 				String paramCode = tr.child(1).text().trim();
 				String paramTimes = tr.child(2).text().trim();
@@ -70,6 +75,10 @@ public class JsoupUtil {
 				String paramLength = tr.child(4).text().trim();
 				String paramName = tr.child(5).text().trim();
 				String remark = tr.child(6).text().trim();
+
+				if(StringUtils.isNullorEmpty(parentParamCode)){
+					break;
+				}
 
 				if (StringUtils.isNullorEmpty(paramName)) {
 					paramName = paramCode;
@@ -92,6 +101,7 @@ public class JsoupUtil {
 				if (parentParamCode.equals(previousParam.getParamCode())) {
 					param.setSort(1);
 					param.setParentSeq(previousParam.getSeq());
+					LogUtil.debug(JsoupUtil.class, "Load Param: " + param);
 					params.add(param);
 
 					stack.push(previousParam);
@@ -99,6 +109,7 @@ public class JsoupUtil {
 				} else if (parentParamCode.equals(stack.peek().getParamCode())) {
 					param.setSort(previousParam.getSort() + 1);
 					param.setParentSeq(stack.peek().getSeq());
+					LogUtil.debug(JsoupUtil.class, "Load Param: " + param);
 					params.add(param);
 
 					previousParam = param;
@@ -110,9 +121,11 @@ public class JsoupUtil {
 						if (parentParamCode.equals(peek.getParamCode())) {
 							param.setSort(previousParam.getSort() + 1);
 							param.setParentSeq(peek.getSeq());
+							LogUtil.debug(JsoupUtil.class, "Load Param: " + param);
 							params.add(param);
 
 							previousParam = param;
+							break;
 						}
 					}
 				}

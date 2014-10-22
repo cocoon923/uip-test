@@ -6,6 +6,9 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
@@ -17,7 +20,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication uipApplication = new SpringApplication(Application.class);
+//		uipApplication.setResourceLoader(new DefaultResourceLoader());
+		uipApplication.run(args);
 	}
 
 	@Bean

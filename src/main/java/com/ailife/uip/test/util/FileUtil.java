@@ -1,5 +1,7 @@
 package com.ailife.uip.test.util;
 
+import org.springframework.core.io.Resource;
+
 import java.io.*;
 
 /**
@@ -9,6 +11,7 @@ public class FileUtil {
 
 
 	public static void saveFile(String name, String content) {
+		Resource resource = null;
 		try {
 			File localFile = new File("doc/" + name);
 			localFile.deleteOnExit();
