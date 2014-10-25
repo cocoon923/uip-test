@@ -1,4 +1,4 @@
-package com.ailife.uip.test.file.entity;
+package com.ailife.uip.test.db.entity;
 
 import com.ailife.uip.test.db.entity.Param;
 
