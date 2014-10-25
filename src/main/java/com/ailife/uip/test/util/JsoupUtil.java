@@ -1,9 +1,9 @@
 package com.ailife.uip.test.util;
 
+import com.ailife.uip.test.db.entity.Inter;
 import com.ailife.uip.test.db.entity.Param;
 import com.ailife.uip.test.db.util.IdGenerator;
 import com.ailife.uip.test.db.util.StaticDataUtil;
-import com.ailife.uip.test.file.entity.Inter;
 import com.google.common.base.CaseFormat;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -34,12 +34,12 @@ public class JsoupUtil {
 				inter.setSeq(IdGenerator.getNewId());
 				Document interDocument = Jsoup.parseBodyFragment(h3Fragments[j]);
 				Element titleElement = getElement(interDocument, HTMLLEVEL.h3);
-				inter.setName(titleElement.text().trim());
+				inter.setInterName(titleElement.text().trim());
 				inter.setImplClass(entry.getValue());
 				Elements descElementTrs = getNextElement(titleElement, HTMLLEVEL.table).child(0).children();
-				inter.setDesc(descElementTrs.get(1).child(1).text());
+				inter.setInterDesc(descElementTrs.get(1).child(1).text());
 				String busiCode = descElementTrs.get(6).child(1).text();
-				inter.setBusiCode(busiCode);
+				inter.setInterCode(busiCode);
 				inter.setInvokeMethod(StringUtils.caseFormatTransfer(CaseFormat.UPPER_CAMEL, CaseFormat.LOWER_CAMEL, busiCode));
 				inter.setSort(j);
 				Element reqParams = getNextElement(getElement(interDocument, HTMLLEVEL.h4, "输入参数"), HTMLLEVEL.table);
@@ -66,7 +66,6 @@ public class JsoupUtil {
 			for (int i = 1; i < trs.size(); i++) {
 
 
-
 				Element tr = trs.get(i);
 				String parentParamCode = tr.child(0).text().trim();
 				String paramCode = tr.child(1).text().trim();
@@ -76,7 +75,7 @@ public class JsoupUtil {
 				String paramName = tr.child(5).text().trim();
 				String remark = tr.child(6).text().trim();
 
-				if(StringUtils.isNullorEmpty(parentParamCode)){
+				if (StringUtils.isNullorEmpty(parentParamCode)) {
 					break;
 				}
 

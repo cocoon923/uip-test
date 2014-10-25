@@ -1,7 +1,5 @@
 package com.ailife.uip.test.db.entity;
 
-import com.ailife.uip.test.db.entity.Param;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +10,13 @@ import java.util.List;
 public class Inter implements Serializable {
 
 	private long seq;
-	private String name;
-	private String desc;
-	private String busiCode;
+	private String interName;
+	private String interDesc;
+	private String interCode;
 	private String implClass;
 	private String invokeMethod;
 	private int sort;
-	private String remarks;
+	private String remark;
 	private List<Param> params = new ArrayList<Param>();
 
 	public long getSeq() {
@@ -29,28 +27,28 @@ public class Inter implements Serializable {
 		this.seq = seq;
 	}
 
-	public String getName() {
-		return name;
+	public String getInterName() {
+		return interName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setInterName(String interName) {
+		this.interName = interName;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getInterDesc() {
+		return interDesc;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setInterDesc(String interDesc) {
+		this.interDesc = interDesc;
 	}
 
-	public String getBusiCode() {
-		return busiCode;
+	public String getInterCode() {
+		return interCode;
 	}
 
-	public void setBusiCode(String busiCode) {
-		this.busiCode = busiCode;
+	public void setInterCode(String interCode) {
+		this.interCode = interCode;
 	}
 
 	public String getImplClass() {
@@ -77,12 +75,12 @@ public class Inter implements Serializable {
 		this.sort = sort;
 	}
 
-	public String getRemarks() {
-		return remarks;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public List<Param> getParams() {
@@ -101,13 +99,14 @@ public class Inter implements Serializable {
 	public String toString() {
 		return "Inter{" +
 				"seq=" + seq +
-				", name='" + name + '\'' +
-				", desc='" + desc + '\'' +
-				", busiCode='" + busiCode + '\'' +
+				", interName='" + interName + '\'' +
+				", interDesc='" + interDesc + '\'' +
+				", interCode='" + interCode + '\'' +
 				", implClass='" + implClass + '\'' +
 				", invokeMethod='" + invokeMethod + '\'' +
 				", sort=" + sort +
-				", remarks='" + remarks + '\'' +
+				", remark='" + remark + '\'' +
+				", params=" + params +
 				'}';
 	}
 }

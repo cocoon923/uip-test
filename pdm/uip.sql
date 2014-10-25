@@ -18,6 +18,11 @@ DROP TABLE IF EXISTS uip_param;
 
 DROP TABLE IF EXISTS uip_static_data;
 
+DROP TABLE IF EXISTS uip_inter;
+
+DROP TABLE IF EXISTS uip_inter_param;
+
+
 /*==============================================================*/
 /* Table: sequence                                              */
 /*==============================================================*/
@@ -84,6 +89,39 @@ CREATE TABLE uip_param
 )
   ENGINE =InnoDB
   DEFAULT CHARSET =utf8;
+
+/*==============================================================*/
+/* Table: uip_inter                                             */
+/*==============================================================*/
+CREATE TABLE uip_inter
+(
+  seq           BIGINT NOT NULL,
+  inter_name    VARCHAR(100),
+  inter_desc    VARCHAR(100),
+  inter_code    VARCHAR(50),
+  impl_class    VARCHAR(100),
+  invoke_method VARCHAR(100),
+  sort          INT,
+  remark        VARCHAR(1000),
+  PRIMARY KEY (seq)
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
+
+
+/*==============================================================*/
+/* Table: uip_inter_param                                       */
+/*==============================================================*/
+CREATE TABLE uip_inter_param
+(
+  seq       BIGINT NOT NULL,
+  inter_seq BIGINT,
+  param_seq BIGINT,
+  PRIMARY KEY (seq)
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
+
 
 CREATE FUNCTION currval(v_seq_name VARCHAR(50))
   RETURNS BIGINT(20)

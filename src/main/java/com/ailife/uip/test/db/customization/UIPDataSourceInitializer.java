@@ -1,12 +1,12 @@
 package com.ailife.uip.test.db.customization;
 
 import com.ailife.uip.test.config.DocProperties;
+import com.ailife.uip.test.db.entity.Inter;
 import com.ailife.uip.test.db.entity.Param;
 import com.ailife.uip.test.db.service.IParamService;
 import com.ailife.uip.test.db.util.IdGenerator;
 import com.ailife.uip.test.db.util.StaticDataUtil;
 import com.ailife.uip.test.event.DataInitialEvent;
-import com.ailife.uip.test.file.entity.Inter;
 import com.ailife.uip.test.util.DATATYPE;
 import com.ailife.uip.test.util.FileUtil;
 import com.ailife.uip.test.util.JsoupUtil;

@@ -1,6 +1,5 @@
 package com.ailife.uip.test.controllers;
 
-import com.ailife.uip.test.event.DocInitialEventPublisher;
 import com.ailife.uip.test.util.LogUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -18,9 +16,6 @@ import java.io.FileOutputStream;
 @RestController
 @RequestMapping(value = "/file")
 public class FileController {
-
-	@Resource
-	private DocInitialEventPublisher publisher;
 
 	@RequestMapping()
 	public ModelAndView index() {
@@ -49,7 +44,6 @@ public class FileController {
 			LogUtil.error(this.getClass(), "Upload Error", e);
 		}
 		if (isSuccess) {
-			publisher.monitor(localFile);
 			return "Upload Success!";
 		} else {
 			return "Upload Fail!";
