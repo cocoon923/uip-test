@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSONReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
@@ -36,12 +37,13 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 	@Autowired
 	private IParamService paramService;
 
+	@Autowired
+	private PlatformTransactionManager transactionManager;
+
 	@PostConstruct
 	protected void initialize() throws Exception {
 		initialPublicParams();
-		Param param = StaticDataUtil.getReqRootParam();
-		System.out.println(param);
-		initialDocument();
+//		initialDocument();
 	}
 
 	private void initialDocument() {

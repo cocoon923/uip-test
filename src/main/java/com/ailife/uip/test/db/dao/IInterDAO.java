@@ -5,6 +5,4 @@ package com.ailife.uip.test.db.dao;
  */
 public interface IInterDAO extends CRUD {
 
-
-
 }

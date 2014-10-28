@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import javax.sql.DataSource;
 
 /**
  * Created by chenmm on 10/13/2014.
@@ -20,10 +24,18 @@ public class DocAutoConfiguration {
 	@ConditionalOnMissingBean(UIPDataSourceInitializer.class)
 	protected static class UIPDataSourceInitializerConfiguration {
 
+//		@Autowired
+//		private DataSource dataSource;
+
 		@Bean
 		public UIPDataSourceInitializer uipDataSourceInitializer() {
 			return new UIPDataSourceInitializer();
 		}
+
+//		@Bean(name = "transactionManager")
+//		public PlatformTransactionManager platformTransactionManager() {
+//			return new DataSourceTransactionManager(dataSource);
+//		}
 
 	}
 
