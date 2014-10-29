@@ -3,25 +3,21 @@ package com.ailife.uip.test.event;
 import org.springframework.context.ApplicationEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by chenmm on 10/13/2014.
  */
 public class DataInitialEvent<T> extends ApplicationEvent {
 
-	private Class<T> clz;
-
-	public DataInitialEvent(List<T> source, Class<T> clz) {
+	public DataInitialEvent(T source) {
 		super(source);
-		this.clz = clz;
 	}
 
 	@Override
-	public List<T> getSource() {
-		return (List<T>) super.getSource();
+	@SuppressWarnings("unchecked")
+	public T getSource() {
+		return (T) super.getSource();
 	}
 
-	public Class<T> getClz() {
-		return clz;
-	}
 }

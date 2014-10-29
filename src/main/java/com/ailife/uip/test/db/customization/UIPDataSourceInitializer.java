@@ -3,6 +3,7 @@ package com.ailife.uip.test.db.customization;
 import com.ailife.uip.test.config.DocProperties;
 import com.ailife.uip.test.db.entity.Inter;
 import com.ailife.uip.test.db.entity.Param;
+import com.ailife.uip.test.db.service.IInterService;
 import com.ailife.uip.test.db.service.IParamService;
 import com.ailife.uip.test.db.util.IdGenerator;
 import com.ailife.uip.test.db.util.StaticDataUtil;
@@ -22,11 +23,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by chenmm on 10/13/2014.
  */
-public class UIPDataSourceInitializer implements ApplicationListener<DataInitialEvent> {
+public class UIPDataSourceInitializer {
 
 	@Autowired
 	private DocProperties docProperties;
@@ -38,7 +40,7 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 	private IParamService paramService;
 
 	@Autowired
-	private PlatformTransactionManager transactionManager;
+	private IInterService interService;
 
 	@PostConstruct
 	protected void initialize() throws Exception {
@@ -48,34 +50,23 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 
 	private void initialDocument() {
 		InputStream inputStream = FileUtil.loadProjectFile(docProperties.getDocPath());
-		String html = TikaUtil.parse(inputStream);
-		List<Inter> interList = JsoupUtil.parseHtml(html);
-		this.applicationContext.publishEvent(new DataInitialEvent<Inter>(interList, Inter.class));
+		interService.batchSave(JsoupUtil.parseHtml(TikaUtil.parse(inputStream)));
 	}
 
 	private void initialPublicParams() {
 		String rootValue = StaticDataUtil.getStaticDataValue(DATATYPE.PUBLIC_PARAM.toString(), "ROOT");
 		if (!paramService.isPublicParamInitial(rootValue)) {
-			List<Param> params = getParams(docProperties.getRootParamPath());
-			if (params != null && params.size() > 0) {
-				this.applicationContext.publishEvent(new DataInitialEvent<Param>(params, Param.class));
-			}
+			paramService.batchSave(getParams(docProperties.getRootParamPath()));
 		}
 
 		String requestValue = StaticDataUtil.getStaticDataValue(DATATYPE.PUBLIC_PARAM.toString(), "REQUEST");
 		if (!paramService.isPublicParamInitial(requestValue)) {
-			List<Param> params = getParams(docProperties.getRequestParamPath());
-			if (params != null && params.size() > 0) {
-				this.applicationContext.publishEvent(new DataInitialEvent<Param>(params, Param.class));
-			}
+			paramService.batchSave(getParams(docProperties.getRequestParamPath()));
 		}
 
 		String responseValue = StaticDataUtil.getStaticDataValue(DATATYPE.PUBLIC_PARAM.toString(), "RESPONSE");
 		if (!paramService.isPublicParamInitial(responseValue)) {
-			List<Param> params = getParams(docProperties.getResponseParamPath());
-			if (params != null && params.size() > 0) {
-				this.applicationContext.publishEvent(new DataInitialEvent<Param>(params, Param.class));
-			}
+			paramService.batchSave(getParams(docProperties.getResponseParamPath()));
 		}
 	}
 
@@ -94,14 +85,4 @@ public class UIPDataSourceInitializer implements ApplicationListener<DataInitial
 		return params;
 	}
 
-	@Override
-	public void onApplicationEvent(DataInitialEvent event) {
-		if (event.getClz() == Param.class) {
-			paramService.batchSave(event.getSource());
-		}
-		if (event.getClz() == Inter.class) {
-
-		}
-
-	}
 }

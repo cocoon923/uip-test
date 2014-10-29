@@ -22,7 +22,7 @@ public class FileUtil {
 			fileOutputStream.flush();
 			fileOutputStream.close();
 		} catch (IOException e) {
-			LogUtil.error(FileUtil.class, "Save file Error!", e);
+			LogUtil.error(FileUtil.class, e, "Save file Error!");
 		}
 	}
 
@@ -33,7 +33,7 @@ public class FileUtil {
 				return new FileInputStream(localFile);
 			}
 		} catch (FileNotFoundException e) {
-			LogUtil.error(FileUtil.class, "File not found!", e);
+			LogUtil.error(FileUtil.class, e, "File not found!");
 		}
 		return null;
 	}

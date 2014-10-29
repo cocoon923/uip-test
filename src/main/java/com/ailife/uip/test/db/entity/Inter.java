@@ -9,21 +9,36 @@ import java.util.List;
  */
 public class Inter implements Serializable {
 
-	private long seq;
+	private Long seq;
 	private String interName;
 	private String interDesc;
 	private String interCode;
 	private String implClass;
 	private String invokeMethod;
-	private int sort;
+	private Integer sort;
 	private String remark;
 	private List<Param> params = new ArrayList<Param>();
 
-	public long getSeq() {
+	public Inter() {
+	}
+
+	public Inter(Long seq, String interName, String interDesc, String interCode, String implClass, String invokeMethod, Integer sort, String remark, List<Param> params) {
+		this.seq = seq;
+		this.interName = interName;
+		this.interDesc = interDesc;
+		this.interCode = interCode;
+		this.implClass = implClass;
+		this.invokeMethod = invokeMethod;
+		this.sort = sort;
+		this.remark = remark;
+		this.params = params;
+	}
+
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(long seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
@@ -67,11 +82,11 @@ public class Inter implements Serializable {
 		this.invokeMethod = invokeMethod;
 	}
 
-	public int getSort() {
+	public Integer getSort() {
 		return sort;
 	}
 
-	public void setSort(int sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
 
@@ -97,16 +112,17 @@ public class Inter implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Inter{" +
-				"seq=" + seq +
-				", interName='" + interName + '\'' +
-				", interDesc='" + interDesc + '\'' +
-				", interCode='" + interCode + '\'' +
-				", implClass='" + implClass + '\'' +
-				", invokeMethod='" + invokeMethod + '\'' +
-				", sort=" + sort +
-				", remark='" + remark + '\'' +
-				", params=" + params +
-				'}';
+		final StringBuilder sb = new StringBuilder("Inter{");
+		sb.append("seq=").append(seq);
+		sb.append(", interName='").append(interName).append('\'');
+		sb.append(", interDesc='").append(interDesc).append('\'');
+		sb.append(", interCode='").append(interCode).append('\'');
+		sb.append(", implClass='").append(implClass).append('\'');
+		sb.append(", invokeMethod='").append(invokeMethod).append('\'');
+		sb.append(", sort=").append(sort);
+		sb.append(", remark='").append(remark).append('\'');
+		sb.append(", params=").append(params);
+		sb.append('}');
+		return sb.toString();
 	}
 }

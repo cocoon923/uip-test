@@ -25,7 +25,9 @@ public class InterServiceImpl implements IInterService {
 
 	@Override
 	public void batchSave(List<Inter> interList) {
+		for (Inter inter : interList) {
 
+		}
 	}
 
 }

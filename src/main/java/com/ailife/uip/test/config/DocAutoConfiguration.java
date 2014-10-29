@@ -24,18 +24,18 @@ public class DocAutoConfiguration {
 	@ConditionalOnMissingBean(UIPDataSourceInitializer.class)
 	protected static class UIPDataSourceInitializerConfiguration {
 
-//		@Autowired
-//		private DataSource dataSource;
+		@Autowired
+		private DataSource dataSource;
 
 		@Bean
 		public UIPDataSourceInitializer uipDataSourceInitializer() {
 			return new UIPDataSourceInitializer();
 		}
 
-//		@Bean(name = "transactionManager")
-//		public PlatformTransactionManager platformTransactionManager() {
-//			return new DataSourceTransactionManager(dataSource);
-//		}
+		@Bean(name = "transactionManager")
+		public PlatformTransactionManager platformTransactionManager() {
+			return new DataSourceTransactionManager(dataSource);
+		}
 
 	}
 

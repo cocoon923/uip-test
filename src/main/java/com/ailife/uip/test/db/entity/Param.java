@@ -8,21 +8,21 @@ import java.io.Serializable;
 
 public class Param implements Serializable {
 
-	private long seq;
+	private Long seq;
 	private String paramName;
 	private String paramCode;
 	private String paramClazz;
 	private String paramLength;
 	private String paramTimes;
-	private int sort;
+	private Integer sort;
 	private String paramType;
 	private String remark;
-	private long parentSeq;
+	private Long parentSeq;
 
 	public Param() {
 	}
 
-	public Param(long seq, String paramName, String paramCode, String paramClazz, String paramLength, String paramTimes, int sort, String paramType, String remark, long parentSeq) {
+	public Param(Long seq, String paramName, String paramCode, String paramClazz, String paramLength, String paramTimes, Integer sort, String paramType, String remark, Long parentSeq) {
 		this.seq = seq;
 		this.paramName = paramName;
 		this.paramCode = paramCode;
@@ -35,11 +35,11 @@ public class Param implements Serializable {
 		this.parentSeq = parentSeq;
 	}
 
-	public long getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(long seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
@@ -83,11 +83,11 @@ public class Param implements Serializable {
 		this.paramTimes = paramTimes;
 	}
 
-	public int getSort() {
+	public Integer getSort() {
 		return sort;
 	}
 
-	public void setSort(int sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
 
@@ -107,28 +107,12 @@ public class Param implements Serializable {
 		this.remark = remark;
 	}
 
-	public long getParentSeq() {
+	public Long getParentSeq() {
 		return parentSeq;
 	}
 
-	public void setParentSeq(long parentSeq) {
+	public void setParentSeq(Long parentSeq) {
 		this.parentSeq = parentSeq;
-	}
-
-	@Override
-	public String toString() {
-		return "Param{" +
-				"seq=" + seq +
-				", paramName='" + paramName + '\'' +
-				", paramCode='" + paramCode + '\'' +
-				", paramClazz='" + paramClazz + '\'' +
-				", paramLength='" + paramLength + '\'' +
-				", paramTimes='" + paramTimes + '\'' +
-				", sort=" + sort +
-				", paramType='" + paramType + '\'' +
-				", remark='" + remark + '\'' +
-				", parentSeq=" + parentSeq +
-				'}';
 	}
 
 	@Override
@@ -149,5 +133,22 @@ public class Param implements Serializable {
 		int result = (int) (seq ^ (seq >>> 32));
 		result = 31 * result + (int) (parentSeq ^ (parentSeq >>> 32));
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("Param{");
+		sb.append("seq=").append(seq);
+		sb.append(", paramName='").append(paramName).append('\'');
+		sb.append(", paramCode='").append(paramCode).append('\'');
+		sb.append(", paramClazz='").append(paramClazz).append('\'');
+		sb.append(", paramLength='").append(paramLength).append('\'');
+		sb.append(", paramTimes='").append(paramTimes).append('\'');
+		sb.append(", sort=").append(sort);
+		sb.append(", paramType='").append(paramType).append('\'');
+		sb.append(", remark='").append(remark).append('\'');
+		sb.append(", parentSeq=").append(parentSeq);
+		sb.append('}');
+		return sb.toString();
 	}
 }

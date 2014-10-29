@@ -41,7 +41,7 @@ public class FileController {
 				isSuccess = true;
 			}
 		} catch (Exception e) {
-			LogUtil.error(this.getClass(), "Upload Error", e);
+			LogUtil.error(this.getClass(), e, "Upload Error");
 		}
 		if (isSuccess) {
 			return "Upload Success!";

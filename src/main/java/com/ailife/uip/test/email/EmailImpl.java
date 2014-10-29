@@ -44,7 +44,7 @@ public class EmailImpl implements IEmail {
 			//Send the message
 			Transport.send(message);
 		} catch (MessagingException e) {
-			LogUtil.error(this.getClass(), "Send Email Error", e);
+			LogUtil.error(this.getClass(), e, "Send Email Error");
 		}
 	}
 

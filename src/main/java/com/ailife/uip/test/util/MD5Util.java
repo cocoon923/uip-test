@@ -21,7 +21,7 @@ public class MD5Util {
 			md.update(source.getBytes("UTF-8"));
 			result = md.digest();
 		} catch (Exception e) {
-			LogUtil.error(MD5Util.class, "Encode to bytes error", e);
+			LogUtil.error(MD5Util.class, e, "Encode to bytes error");
 		}
 
 		return result;

@@ -1,6 +1,7 @@
 package com.ailife.uip.test.db.dao.impl;
 
 import com.ailife.uip.test.db.rowmapper.RowMapperHelper;
+import com.ailife.uip.test.db.rowmapper.UIPRowMapper;
 import com.ailife.uip.test.util.LogUtil;
 import com.ailife.uip.test.util.StringUtils;
 import com.ailife.uip.test.util.Symbol;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import sun.rmi.runtime.Log;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -29,7 +31,9 @@ public abstract class BaseDAO {
 	}
 
 	public <T> void save(T t) {
-		this.getNamedParameterJdbcTemplate().update(getInsertSQL(t.getClass()), new BeanPropertySqlParameterSource(t));
+		String insertSQL = getInsertSQL(t.getClass());
+		LogUtil.debug(this.getClass(), insertSQL);
+		this.getNamedParameterJdbcTemplate().update(insertSQL, new BeanPropertySqlParameterSource(t));
 	}
 
 	public <T> void batchSave(Class<T> clz, List<T> list) {
@@ -48,15 +52,13 @@ public abstract class BaseDAO {
 		try {
 			MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 			parameterSource.addValue("seq", seq);
-			String rowMapperName = clz.getSimpleName() + RowMapper.class.getSimpleName();
-			Class<?> tClass = Class.forName(RowMapperHelper.getPackage() + Symbol.PERIOD+ rowMapperName);
-			RowMapper<T> rowMapper = (RowMapper<T>) tClass.newInstance();
+			RowMapper<T> rowMapper = new UIPRowMapper<T>(clz);
 			List<T> list = this.getNamedParameterJdbcTemplate().query(getQueryByIdSQL(clz), parameterSource, rowMapper);
 			if (list != null && list.size() == 1) {
 				return list.get(0);
 			}
 		} catch (Exception e) {
-			LogUtil.error(this.getClass(), "Query by id error!", e);
+			LogUtil.error(this.getClass(), e, "Query by id error!");
 		}
 		return null;
 	}
