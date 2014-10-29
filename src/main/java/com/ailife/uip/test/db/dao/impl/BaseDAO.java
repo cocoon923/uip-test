@@ -1,6 +1,5 @@
 package com.ailife.uip.test.db.dao.impl;
 
-import com.ailife.uip.test.db.rowmapper.RowMapperHelper;
 import com.ailife.uip.test.db.rowmapper.UIPRowMapper;
 import com.ailife.uip.test.util.LogUtil;
 import com.ailife.uip.test.util.StringUtils;
@@ -12,10 +11,8 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import sun.rmi.runtime.Log;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.List;
 
 /**
@@ -29,6 +26,8 @@ public abstract class BaseDAO {
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
 		return namedParameterJdbcTemplate;
 	}
+
+	public abstract RowMapper getRowMapper();
 
 	public <T> void save(T t) {
 		String insertSQL = getInsertSQL(t.getClass());
@@ -45,7 +44,9 @@ public abstract class BaseDAO {
 		for (int i = 0; i < size; i++) {
 			sqlParameterSources[i] = new BeanPropertySqlParameterSource(list.get(i));
 		}
-		this.getNamedParameterJdbcTemplate().batchUpdate(getInsertSQL(clz), sqlParameterSources);
+		String insertSQL = getInsertSQL(clz);
+		LogUtil.debug(this.getClass(), insertSQL);
+		this.getNamedParameterJdbcTemplate().batchUpdate(insertSQL, sqlParameterSources);
 	}
 
 	public <T> T queryById(Class<T> clz, long seq) {
@@ -53,7 +54,9 @@ public abstract class BaseDAO {
 			MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 			parameterSource.addValue("seq", seq);
 			RowMapper<T> rowMapper = new UIPRowMapper<T>(clz);
-			List<T> list = this.getNamedParameterJdbcTemplate().query(getQueryByIdSQL(clz), parameterSource, rowMapper);
+			String queryByIdSQL = getQueryByIdSQL(clz);
+			LogUtil.debug(this.getClass(), queryByIdSQL);
+			List<T> list = this.getNamedParameterJdbcTemplate().query(queryByIdSQL, parameterSource, rowMapper);
 			if (list != null && list.size() == 1) {
 				return list.get(0);
 			}
@@ -82,9 +85,6 @@ public abstract class BaseDAO {
 		sbField.append("INSERT INTO").append(Symbol.BLANK).append("uip" + Symbol.UNDERLINE + clz.getSimpleName().toLowerCase()).append(Symbol.BLANK).append(Symbol.PARENLEFT);
 		sbParam.append(Symbol.PARENRIGHT).append(Symbol.BLANK).append("VALUES").append(Symbol.BLANK).append(Symbol.PARENLEFT);
 		for (Field field : fields) {
-			if ((field.getModifiers() & Modifier.STATIC) == Modifier.STATIC) {
-				continue;
-			}
 			String fieldName = field.getName();
 			String underscoreFieldName = StringUtils.caseFormatTransfer(CaseFormat.LOWER_CAMEL, CaseFormat.LOWER_UNDERSCORE, fieldName);
 			sbField.append(underscoreFieldName).append(Symbol.COMMA);

@@ -1,15 +1,13 @@
 package com.ailife.uip.test.db.dao.impl;
 
 import com.ailife.uip.test.db.dao.IParamDAO;
-import com.ailife.uip.test.db.rowmapper.ParamRowMapper;
 import com.ailife.uip.test.db.entity.Param;
+import com.ailife.uip.test.db.rowmapper.UIPRowMapper;
 import com.ailife.uip.test.db.util.StaticDataUtil;
 import com.ailife.uip.test.util.DATATYPE;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,14 +20,16 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 	private static final String QUERY_COUNT_BY_PARENTSEQ = "SELECT COUNT(*) FROM uip_param WHERE parent_seq = :parentSeq";
 	private static final String QUERY_BY_PARENTSEQ_PARAMTYPE = "SELECT * FROM uip_param WHERE parent_seq = :parentSeq AND param_type = :paramType";
 
-	@Autowired
-	private ParamRowMapper paramRowMapper;
+	@Override
+	public UIPRowMapper<Param> getRowMapper() {
+		return new UIPRowMapper<Param>(Param.class);
+	}
 
 	@Override
 	public List<Param> queryParamByParentSeq(long parentSeq) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
-		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ, parameterSource, paramRowMapper);
+		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ, parameterSource, getRowMapper());
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
 		parameterSource.addValue("paramType", paramType);
-		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ_PARAMTYPE, parameterSource, paramRowMapper);
+		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ_PARAMTYPE, parameterSource, getRowMapper());
 	}
 
 	@Override
@@ -54,6 +54,7 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);
 		parameterSource.addValue("paramType", paramType);
-		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ_PARAMTYPE, parameterSource, paramRowMapper);
+		return this.getNamedParameterJdbcTemplate().query(QUERY_BY_PARENTSEQ_PARAMTYPE, parameterSource, getRowMapper());
 	}
+
 }
