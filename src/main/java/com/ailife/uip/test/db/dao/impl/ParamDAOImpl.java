@@ -26,6 +26,26 @@ public class ParamDAOImpl extends BaseDAO implements IParamDAO {
 	}
 
 	@Override
+	public void save(Param param) {
+		super.save(Param.class, param);
+	}
+
+	@Override
+	public void batchSave(List<Param> list) {
+		super.batchSave(Param.class, list);
+	}
+
+	@Override
+	public void delete(Param param) {
+		super.delete(Param.class, param);
+	}
+
+	@Override
+	public Param queryById(long seq) {
+		return super.queryById(Param.class, seq);
+	}
+
+	@Override
 	public List<Param> queryParamByParentSeq(long parentSeq) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("parentSeq", parentSeq);

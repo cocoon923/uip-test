@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * @author chenmm
  */
-public interface IStaticDataDAO extends CRUD {
+public interface IStaticDataDAO {
 
 	public Map<String, String> getStaticData(String dataType);
 

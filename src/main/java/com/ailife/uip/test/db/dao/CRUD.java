@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * Created by chenmm on 10/13/2014.
  */
-public interface CRUD {
+public interface CRUD<T> {
 
-	public <T> void save(T t);
+	public void save(T t);
 
-	public <T> void batchSave(Class<T> clz, List<T> list);
+	public void batchSave(List<T> list);
 
-	public <T> void delete(T t);
+	public void delete(T t);
 
-	public <T> T queryById(Class<T> clz, long seq);
+	public T queryById(long seq);
 
 }

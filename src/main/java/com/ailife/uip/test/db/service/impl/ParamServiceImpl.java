@@ -31,12 +31,12 @@ public class ParamServiceImpl implements IParamService {
 
 	@Override
 	public void batchSave(List<Param> paramList) {
-		paramDAO.batchSave(Param.class, paramList);
+		paramDAO.batchSave(paramList);
 	}
 
 	@Override
 	public Param queryBySeq(long seq) {
-		return paramDAO.queryById(Param.class, seq);
+		return paramDAO.queryById(seq);
 	}
 
 	@Override

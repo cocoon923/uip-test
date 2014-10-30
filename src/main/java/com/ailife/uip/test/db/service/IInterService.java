@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface IInterService {
 
-	public void batchSave(List<Inter> interList);
+	public void save(Inter inter);
 
 }

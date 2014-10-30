@@ -50,7 +50,10 @@ public class UIPDataSourceInitializer {
 
 	private void initialDocument() {
 		InputStream inputStream = FileUtil.loadProjectFile(docProperties.getDocPath());
-		interService.batchSave(JsoupUtil.parseHtml(TikaUtil.parse(inputStream)));
+		List<Inter> interList = JsoupUtil.parseHtml(TikaUtil.parse(inputStream));
+		for (Inter inter : interList) {
+			interService.save(inter);
+		}
 	}
 
 	private void initialPublicParams() {

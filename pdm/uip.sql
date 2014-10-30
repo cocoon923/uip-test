@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS uip_static_data;
 
 DROP TABLE IF EXISTS uip_inter;
 
-DROP TABLE IF EXISTS uip_inter_param;
+DROP TABLE IF EXISTS uip_item_relat;
 
 
 /*==============================================================*/
@@ -110,13 +110,15 @@ CREATE TABLE uip_inter
 
 
 /*==============================================================*/
-/* Table: uip_inter_param                                       */
+/* Table: uip_item_relat                                        */
 /*==============================================================*/
-CREATE TABLE uip_inter_param
+CREATE TABLE uip_item_relat
 (
-  seq       BIGINT NOT NULL,
-  inter_seq BIGINT,
-  param_seq BIGINT,
+  seq             BIGINT NOT NULL,
+  item_seq        BIGINT,
+  relat_item_seq  BIGINT,
+  item_type       VARCHAR(100),
+  relat_item_type VARCHAR(100),
   PRIMARY KEY (seq)
 )
   ENGINE =InnoDB

@@ -29,13 +29,13 @@ public abstract class BaseDAO {
 
 	public abstract RowMapper getRowMapper();
 
-	public <T> void save(T t) {
-		String insertSQL = getInsertSQL(t.getClass());
+	protected <T> void save(Class<T> clz, T t) {
+		String insertSQL = getInsertSQL(clz);
 		LogUtil.debug(this.getClass(), insertSQL);
 		this.getNamedParameterJdbcTemplate().update(insertSQL, new BeanPropertySqlParameterSource(t));
 	}
 
-	public <T> void batchSave(Class<T> clz, List<T> list) {
+	protected <T> void batchSave(Class<T> clz, List<T> list) {
 		if (list == null || list.size() <= 0) {
 			return;
 		}
@@ -49,7 +49,7 @@ public abstract class BaseDAO {
 		this.getNamedParameterJdbcTemplate().batchUpdate(insertSQL, sqlParameterSources);
 	}
 
-	public <T> T queryById(Class<T> clz, long seq) {
+	protected <T> T queryById(Class<T> clz, long seq) {
 		try {
 			MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 			parameterSource.addValue("seq", seq);
@@ -66,7 +66,7 @@ public abstract class BaseDAO {
 		return null;
 	}
 
-	public <T> void delete(T t) {
+	protected <T> void delete(Class<T> clz, T t) {
 
 	}
 

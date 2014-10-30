@@ -18,11 +18,12 @@ public class Inter implements Serializable {
 	private Integer sort;
 	private String remark;
 	private List<Param> params = new ArrayList<Param>();
+	private List<ItemRelat> itemRelats = new ArrayList<ItemRelat>();
 
 	public Inter() {
 	}
 
-	public Inter(Long seq, String interName, String interDesc, String interCode, String implClass, String invokeMethod, Integer sort, String remark, List<Param> params) {
+	public Inter(Long seq, String interName, String interDesc, String interCode, String implClass, String invokeMethod, Integer sort, String remark) {
 		this.seq = seq;
 		this.interName = interName;
 		this.interDesc = interDesc;
@@ -31,7 +32,6 @@ public class Inter implements Serializable {
 		this.invokeMethod = invokeMethod;
 		this.sort = sort;
 		this.remark = remark;
-		this.params = params;
 	}
 
 	public Long getSeq() {
@@ -102,12 +102,16 @@ public class Inter implements Serializable {
 		return params;
 	}
 
-	public void setParams(List<Param> params) {
-		this.params = params;
-	}
-
 	public void addParams(List<Param> params) {
 		this.params.addAll(params);
+	}
+
+	public List<ItemRelat> getItemRelats() {
+		return itemRelats;
+	}
+
+	public void addItemRelats(List<ItemRelat> itemRelats) {
+		this.itemRelats.addAll(itemRelats);
 	}
 
 	@Override
@@ -121,7 +125,6 @@ public class Inter implements Serializable {
 		sb.append(", invokeMethod='").append(invokeMethod).append('\'');
 		sb.append(", sort=").append(sort);
 		sb.append(", remark='").append(remark).append('\'');
-		sb.append(", params=").append(params);
 		sb.append('}');
 		return sb.toString();
 	}
