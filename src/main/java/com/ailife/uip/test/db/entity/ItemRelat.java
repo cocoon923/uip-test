@@ -14,12 +14,12 @@ public class ItemRelat {
 	public ItemRelat() {
 	}
 
-	public ItemRelat(Long seq, Long itemSeq, Long relatItemSeq, String itemType, String relatItemType) {
+	public ItemRelat(Long seq, Long itemSeq, Long relatItemSeq, Class itemClazz, Class relatItemClazz) {
 		this.seq = seq;
 		this.itemSeq = itemSeq;
 		this.relatItemSeq = relatItemSeq;
-		this.itemType = itemType;
-		this.relatItemType = relatItemType;
+		this.itemType = itemClazz.getName();
+		this.relatItemType = relatItemClazz.getName();
 	}
 
 	public Long getSeq() {

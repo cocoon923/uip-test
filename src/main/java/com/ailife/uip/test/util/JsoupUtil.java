@@ -1,6 +1,7 @@
 package com.ailife.uip.test.util;
 
 import com.ailife.uip.test.db.entity.Inter;
+import com.ailife.uip.test.db.entity.ItemRelat;
 import com.ailife.uip.test.db.entity.Param;
 import com.ailife.uip.test.db.util.IdGenerator;
 import com.ailife.uip.test.db.util.StaticDataUtil;
@@ -46,11 +47,22 @@ public class JsoupUtil {
 				Element respParams = getNextElement(getElement(interDocument, HTMLLEVEL.h4, "输出参数"), HTMLLEVEL.table);
 				inter.addParams(getParamsFromTable(reqParams, true));
 				inter.addParams(getParamsFromTable(respParams, false));
+				inter.addItemRelats(generateInterParamRelat(inter));
 				LogUtil.debug(JsoupUtil.class, "Load Inter: " + inter + Symbol.CRLF);
 				interList.add(inter);
 			}
 		}
 		return interList;
+	}
+
+	private static List<ItemRelat> generateInterParamRelat(Inter inter) {
+		List<ItemRelat> itemRelatList = new ArrayList<ItemRelat>();
+		if (inter != null) {
+			for (Param param : inter.getParams()) {
+				itemRelatList.add(new ItemRelat(IdGenerator.getNewId(), inter.getSeq(), param.getSeq(), Inter.class, Param.class));
+			}
+		}
+		return itemRelatList;
 	}
 
 	private static List<Param> getParamsFromTable(Element element, boolean isReq) {

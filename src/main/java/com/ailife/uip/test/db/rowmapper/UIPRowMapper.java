@@ -27,10 +27,10 @@ public class UIPRowMapper<T> implements RowMapper<T> {
 	public T mapRow(ResultSet rs, int rowNum) throws SQLException {
 		try {
 			T t = this.clz.newInstance();
-			Field[] fields = this.clz.getFields();
+			Field[] fields = this.clz.getDeclaredFields();
 			for (Field field : fields) {
 				String methodName = getMethodName(field.getName());
-				String setMethodName = new StringBuilder().append("set").append(methodName).toString();
+				String setMethodName = (new StringBuilder()).append("set").append(methodName).toString();
 				String fieldTypeName = field.getType().getName();
 				if (String.class.getName().equals(fieldTypeName)) {
 					Method method = clz.getMethod(setMethodName, String.class);

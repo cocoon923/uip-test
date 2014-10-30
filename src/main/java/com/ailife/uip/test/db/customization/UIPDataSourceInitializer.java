@@ -45,7 +45,7 @@ public class UIPDataSourceInitializer {
 	@PostConstruct
 	protected void initialize() throws Exception {
 		initialPublicParams();
-//		initialDocument();
+		initialDocument();
 	}
 
 	private void initialDocument() {
