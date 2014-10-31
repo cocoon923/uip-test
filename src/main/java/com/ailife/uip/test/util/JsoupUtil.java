@@ -125,19 +125,26 @@ public class JsoupUtil {
 
 					previousParam = param;
 				} else {
-					while (!stack.isEmpty()) {
-						previousParam = stack.pop();
+					try {
+						while (!stack.isEmpty()) {
+							previousParam = stack.pop();
 
-						Param peek = stack.peek();
-						if (parentParamCode.equals(peek.getParamCode())) {
-							param.setSort(previousParam.getSort() + 1);
-							param.setParentSeq(peek.getSeq());
-							LogUtil.debug(JsoupUtil.class, "Load Param: " + param);
-							params.add(param);
+							Param peek = stack.peek();
+							if (parentParamCode.equals(peek.getParamCode())) {
+								param.setSort(previousParam.getSort() + 1);
+								param.setParentSeq(peek.getSeq());
+								LogUtil.debug(JsoupUtil.class, "Load Param: " + param);
+								params.add(param);
 
-							previousParam = param;
-							break;
+								previousParam = param;
+								break;
+							}
 						}
+					} catch (Exception e) {
+						LogUtil.error(JsoupUtil.class, "previousParam: " + previousParam.toString());
+						LogUtil.error(JsoupUtil.class, "parentParamCode: " + parentParamCode);
+						LogUtil.error(JsoupUtil.class, "Param: " + param.toString());
+						LogUtil.error(JsoupUtil.class, e, "Document Error!");
 					}
 				}
 			}
