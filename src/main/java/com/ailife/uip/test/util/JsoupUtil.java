@@ -48,7 +48,7 @@ public class JsoupUtil {
 				inter.addParams(getParamsFromTable(reqParams, true));
 				inter.addParams(getParamsFromTable(respParams, false));
 				inter.addItemRelats(generateInterParamRelat(inter));
-				LogUtil.debug(JsoupUtil.class, "Load Inter: " + inter + Symbol.CRLF);
+				LogUtil.info(JsoupUtil.class, "Load Inter: " + inter + Symbol.CRLF);
 				interList.add(inter);
 			}
 		}
